@@ -7,7 +7,7 @@ import Plasma from "@/components/plasma"
 import { Suspense } from "react"
 import { Toaster } from "@/components/ui/sonner"
 // import { SpeedInsights } from "@vercel/speed-insights/next"
-// import { Analytics } from "@vercel/analytics/react"
+import { Analytics } from "@vercel/analytics/react"
 
 const inter = Inter({ subsets: ["latin"], display: "swap" })
 
@@ -97,8 +97,8 @@ export default function RootLayout({
         </Suspense>
 
         {/* Vercel Speed Insights and Analytics components */}
-          {/* <SpeedInsights />
-          <Analytics /> */}
+          {/* <SpeedInsights /> */}
+          <Analytics />
         <Toaster />
       </body>
     </html>
