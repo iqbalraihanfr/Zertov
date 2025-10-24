@@ -5,16 +5,24 @@ import { Inter } from "next/font/google"
 import Script from "next/script"
 import Plasma from "@/components/plasma"
 import { Suspense } from "react"
-import { SpeedInsights } from "@vercel/speed-insights/next"
-import { Analytics } from "@vercel/analytics/react"
+import { Toaster } from "@/components/ui/sonner"
+// import { SpeedInsights } from "@vercel/speed-insights/next"
+// import { Analytics } from "@vercel/analytics/react"
 
 const inter = Inter({ subsets: ["latin"], display: "swap" })
 
 export const metadata: Metadata = {
-  title: "Skitbit | 3D Animation Made Simple, Reliable & Scalable",
+  title: "Zertov | Digital Marketing Agency",
   description:
-    "From product launches to full-scale campaigns, Skitbit delivers 3D animation that's fast, consistent, and built to wow your audience.",
-  generator: "v0.app",
+    "Zertov is a digital marketing agency that helps businesses grow their online presence and reach their target audience.",
+  keywords: ["digital marketing", "marketing agency", "marketing services", "marketing solutions", "marketing strategies", "marketing consulting", "marketing planning", "marketing implementation", "marketing execution", "marketing management", "marketing consulting", "marketing planning", "marketing implementation", "marketing execution", "marketing management"],
+  authors: [{ name: "Zertov", url: "https://zertov.com" }],
+  creator: "Zertov",
+  publisher: "Zertov",
+  openGraph: {
+    title: "Zertov | Digital Marketing Agency",
+    description: "Zertov is a digital marketing agency that helps businesses grow their online presence and reach their target audience.",
+  },
 }
 
 export default function RootLayout({
@@ -45,7 +53,7 @@ export default function RootLayout({
           {`
             function updateFavicon() {
               const darkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
-              const faviconHref = darkMode ? '/icons/skitbit-white.svg' : '/icons/favicon-dark.svg';
+              const faviconHref = darkMode ? '/icons/zertov-white.svg' : '/icons/favicon-dark.svg';
               let link = document.querySelector("link[rel~='icon']");
               if (!link) {
                 link = document.createElement('link');
@@ -89,8 +97,9 @@ export default function RootLayout({
         </Suspense>
 
         {/* Vercel Speed Insights and Analytics components */}
-        <SpeedInsights />
-        <Analytics />
+          {/* <SpeedInsights />
+          <Analytics /> */}
+        <Toaster />
       </body>
     </html>
   )
