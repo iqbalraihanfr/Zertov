@@ -1,270 +1,188 @@
-import type React from "react"
-import type { Metadata } from "next"
-import Image from "next/image"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import { Card, CardContent } from "@/components/ui/card"
-import { BeforeAfter } from "./_components/before-after"
-import { Camera, Grid2X2, Scissors, Wand2 } from "lucide-react"
-
-export const dynamic = "force-static"
+import React from "react";
+import { SiteHeader } from "@/components/site-header";
+import { Footer } from "@/components/footer";
+import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
+import { TypewriterEffect } from "@/components/ui/typewriter-effect";
+import { AnimatedTooltip } from "@/components/ui/animated-tooltip";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { ArrowLeft, Mail, Phone, MapPin } from "lucide-react";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "3D Product Rendering",
-}
+  title: "3D Product Rendering - Coming Soon",
+  description: "Professional 3D product rendering services are coming soon. Stay tuned for our upcoming 3D visualization solutions.",
+};
 
 export default function Page() {
+  const words = [
+    {
+      text: "3D",
+      className: "text-white",
+    },
+    {
+      text: "Product",
+      className: "text-white",
+    },
+    {
+      text: "Rendering",
+      className: "text-lime-400",
+    },
+    {
+      text: "Coming",
+      className: "text-lime-400",
+    },
+    {
+      text: "Soon",
+      className: "text-lime-400",
+    },
+  ];
+
+  const tooltipItems = [
+    {
+      id: 1,
+      name: "Email Us",
+      designation: "hello@zertov.com",
+      image: "/icons/favicon-white.svg",
+      href: "mailto:hello@zertov.com",
+    },
+    {
+      id: 2,
+      name: "WhatsApp",
+      designation: "+1 (555) 123-4567",
+      image: "/icons/favicon-white.svg",
+      href: "https://wa.link/65mf3i",
+    },
+    {
+      id: 3,
+      name: "Location",
+      designation: "Miami, FL",
+      image: "/icons/favicon-white.svg",
+      href: "#",
+    },
+  ];
+
   return (
-    <main className="bg-background text-foreground">
-      {/* Hero */}
-      <section className="mx-auto w-full max-w-6xl px-4 pb-8 pt-10 md:pt-16">
-        <div className="flex items-center justify-center">
-          <Badge className="rounded-full bg-secondary text-secondary-foreground">Master the iPhone</Badge>
-        </div>
+    <>
+      {/* SEO Schema for 3D Product Rendering Coming Soon Page */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            name: "3D Product Rendering - Coming Soon - Zertov",
+            description: "Professional 3D product rendering services are coming soon. Stay tuned for our upcoming 3D visualization solutions.",
+            url: "https://zertov.com/3d-product-rendering",
+            mainEntity: {
+              "@type": "Organization",
+              name: "Zertov",
+              url: "https://zertov.com",
+              description: "Digital Marketing Agency specializing in 3D animation and visual content",
+            },
+          }),
+        }}
+      />
 
-        <h1 className="mx-auto mt-6 max-w-4xl text-balance text-center text-4xl font-semibold leading-tight md:text-6xl">
-          <span className="italic font-normal">Learn</span> <span className="font-extrabold">the correct</span>{" "}
-          <span className="italic font-normal">way to</span> use your iPhone camera
-        </h1>
+      <main className="min-h-screen bg-black text-white">
+        <SiteHeader />
+        
+        {/* Hero Section */}
+        <section className="relative flex flex-col items-center justify-center min-h-[80vh] px-6 md:px-12 lg:px-20">
+          <div className="text-center max-w-4xl mx-auto">
+            {/* Animated Typewriter Effect */}
+            <div className="mb-8">
+              <TypewriterEffect words={words} className="text-4xl md:text-6xl lg:text-7xl font-bold" />
+            </div>
 
-        <p className="mx-auto mt-4 max-w-2xl text-center text-muted-foreground">
-          In this step-by-step course, learn the exact settings and techniques to capture amazing photos with your
-          iPhone. No experience needed — just follow the steps and see the difference!
-        </p>
-
-        <div className="mt-6 flex justify-center">
-          <Button size="lg" className="rounded-lg">
-            Purchase – $49
-            <span className="ml-2 text-sm text-muted-foreground line-through">$79</span>
-          </Button>
-        </div>
-
-        {/* promo badge under CTA */}
-        <div className="mt-6 flex justify-center">
-          <div className="rounded-full bg-secondary px-4 py-2 text-sm shadow-sm">
-            <span className="mr-2">✦</span> Win a new iPhone 16 Pro and other prizes –{" "}
-            <a className="underline" href="#prizes">
-              Learn more
-            </a>
-            <span className="ml-2">✦</span>
-          </div>
-        </div>
-
-        {/* horizontal image strip */}
-        <div className="mt-10 overflow-x-auto pb-2">
-          <div className="flex gap-4">
-            {Array.from({ length: 8 }).map((_, i) => (
-              <div key={i} className="relative h-56 w-80 shrink-0 overflow-hidden rounded-xl">
-                <Image
-                  src={`/photo-grid-.jpg?height=320&width=640&query=photo%20grid%20${i + 1}`}
-                  alt={`Sample ${i + 1}`}
-                  fill
-                  className="object-cover"
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <p className="mt-2 text-center text-xs text-muted-foreground">All photos shot on iPhone.</p>
-      </section>
-
-      {/* What you'll learn */}
-      <section className="mx-auto w-full max-w-6xl px-4 py-16">
-        <h2 className="mb-10 text-center text-3xl font-semibold md:text-4xl">What you'll learn.</h2>
-        <div className="grid gap-8 md:grid-cols-4">
-          <Feature
-            icon={<Camera className="h-5 w-5" />}
-            title="Best Camera Settings"
-            desc="Discover the exact settings to use for different photo scenarios, ensuring sharp and vibrant results every time."
-          />
-          <Feature
-            icon={<Grid2X2 className="h-5 w-5" />}
-            title="Better Composition"
-            desc="Learn easy tricks to frame your shots like a pro, making every picture look great."
-          />
-          <Feature
-            icon={<Scissors className="h-5 w-5" />}
-            title="Quick Editing Tips"
-            desc="Enhance your photos directly on your iPhone with simple editing techniques anyone can use."
-          />
-          <Feature
-            icon={<Wand2 className="h-5 w-5" />}
-            title="iPhone Camera Tricks"
-            desc="Discover hidden features and shortcuts that will take your photography to the next level."
-          />
-        </div>
-      </section>
-
-      {/* Why this course */}
-      <section className="mx-auto grid w-full max-w-6xl grid-cols-1 items-start gap-10 px-4 py-10 md:grid-cols-2 md:py-16">
-        <div className="relative overflow-hidden rounded-2xl">
-          <Image
-            src="/macro-iphone-camera.jpg"
-            alt="iPhone camera macro"
-            width={1100}
-            height={800}
-            className="h-auto w-full object-cover"
-          />
-        </div>
-        <div>
-          <h3 className="text-3xl font-semibold md:text-4xl">Why this course.</h3>
-          <ul className="mt-6 space-y-5 text-muted-foreground">
-            <li>
-              <strong className="text-foreground">For All Levels</strong>
-              <br />
-              Whether you're a complete beginner or already have some experience, this course is designed to provide
-              value for everyone.
-            </li>
-            <li>
-              <strong className="text-foreground">Easy to Understand</strong>
-              <br />
-              No confusing terms or technical talk — just straightforward advice you can use right away.
-            </li>
-            <li>
-              <strong className="text-foreground">Proven Techniques</strong>
-              <br />
-              Inspired by popular videos, these methods have already helped thousands improve their photos.
-            </li>
-            <li>
-              <strong className="text-foreground">Learn at Your Own Pace</strong>
-              <br />
-              Enjoy lifetime access so you can learn whenever it's convenient for you.
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      {/* Included resource with before/after */}
-      <section className="mx-auto grid w-full max-w-6xl grid-cols-1 items-center gap-10 px-4 py-16 md:grid-cols-2">
-        <div>
-          <Badge className="rounded-full bg-secondary text-secondary-foreground">Included Resource</Badge>
-          <h3 className="mt-4 text-3xl font-semibold leading-tight md:text-4xl">
-            Included — Two Lightroom preset packs
-          </h3>
-          <p className="mt-2 text-sm font-medium text-primary">Total value $78</p>
-          <p className="mt-4 text-muted-foreground">
-            Included with the course is a pack of Lightroom presets that make it quick and easy to apply professional
-            looks to your images. Specifically designed for photos shot on iPhone.
-          </p>
-        </div>
-        <BeforeAfter
-          beforeSrc="/before-building-fa-ade.jpg"
-          afterSrc="/after-building-fa-ade.jpg"
-          className="mx-auto w-full max-w-xl"
-        />
-      </section>
-
-      {/* Shot on iPhone gallery */}
-      <section className="mx-auto w-full max-w-6xl px-4 py-12">
-        <h3 className="text-center text-3xl font-semibold md:text-4xl">Shot on iPhone.</h3>
-        <p className="mx-auto mt-2 max-w-2xl text-center text-muted-foreground">
-          All of the photos you see here are shot on the iPhone. This is exactly the type of images you'll be able to
-          reproduce after taking this course.
-        </p>
-        <div className="mt-8 grid gap-6 md:grid-cols-2">
-          {[1, 2].map((i) => (
-            <div key={i} className="relative overflow-hidden rounded-2xl">
-              <Image
-                src={`/large-gallery-image-.jpg?height=900&width=1200&query=large%20gallery%20image%20${i}`}
-                alt={`Gallery ${i}`}
-                width={1200}
-                height={900}
-                className="h-auto w-full object-cover"
+            {/* Text Generate Effect */}
+            <div className="mb-12">
+              <TextGenerateEffect 
+                words="We're developing cutting-edge 3D product rendering services that will bring your products to life with photorealistic quality. Our team is working on advanced visualization techniques that will revolutionize how you showcase your products online."
+                className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed"
               />
             </div>
-          ))}
-        </div>
-      </section>
 
-      {/* CTA banner with soft gradient */}
-      <section className="mx-auto w-full max-w-6xl px-4 py-16">
-        <div className="rounded-2xl bg-secondary/70 px-6 py-10 text-center">
-          <h3 className="text-2xl font-semibold md:text-3xl">Get started with your iPhone photography journey</h3>
-          <div className="mt-6 flex justify-center">
-            <Button size="lg" className="rounded-lg">
-              Purchase – $49 <span className="ml-2 text-sm text-muted-foreground line-through">$79</span>
-            </Button>
-          </div>
-          <div id="prizes" className="mt-6 inline-flex items-center rounded-full bg-secondary px-3 py-1 text-sm">
-            ✦ Win prizes! ✦
-          </div>
-        </div>
-      </section>
+            {/* Contact Information with Animated Tooltips */}
+            <div className="mb-12">
+              <h3 className="text-xl font-semibold mb-6 text-lime-400">Get in Touch</h3>
+              <div className="flex justify-center items-center gap-6">
+                <AnimatedTooltip items={tooltipItems} />
+              </div>
+            </div>
 
-      {/* Prize cards */}
-      <section className="mx-auto w-full max-w-6xl px-4 pb-12">
-        <div className="grid gap-6 md:grid-cols-3">
-          {[{ title: "iPhone 16 Pro" }, { title: "AirPods Pro" }, { title: "$50 Gift Card" }].map((item, i) => (
-            <Card key={i} className="rounded-2xl">
-              <CardContent className="p-6">
-                <div className="relative mx-auto h-40 w-40 overflow-hidden rounded-xl">
-                  <Image
-                    src={`/.jpg?height=320&width=320&query=${encodeURIComponent(item.title)}`}
-                    alt={item.title}
-                    fill
-                    className="object-cover"
-                  />
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <Button
+                asChild
+                className="bg-lime-400 text-black font-semibold px-8 py-3 rounded-full hover:bg-lime-300 hover:scale-105 transition-all duration-300"
+              >
+                <Link href="/">
+                  <ArrowLeft className="mr-2 h-4 w-4" />
+                  Back to Home
+                </Link>
+              </Button>
+              
+              <Button
+                asChild
+                variant="outline"
+                className="border-lime-400 text-lime-400 font-semibold px-8 py-3 rounded-full hover:bg-lime-400 hover:text-black transition-all duration-300"
+              >
+                <Link href="https://wa.link/65mf3i">
+                  <Phone className="mr-2 h-4 w-4" />
+                  Contact Us
+                </Link>
+              </Button>
+            </div>
+          </div>
+
+          {/* Decorative Elements */}
+          <div className="absolute top-1/4 left-10 w-20 h-20 bg-lime-400/10 rounded-full blur-xl animate-pulse"></div>
+          <div className="absolute bottom-1/4 right-10 w-32 h-32 bg-purple-500/10 rounded-full blur-xl animate-pulse delay-1000"></div>
+          <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-blue-500/10 rounded-full blur-xl animate-pulse delay-500"></div>
+        </section>
+
+        {/* Features Preview Section */}
+        <section className="py-20 px-6 md:px-12 lg:px-20 bg-neutral-900/50">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-lime-400">
+              What's Coming
+            </h2>
+            
+            <div className="grid md:grid-cols-3 gap-8">
+              {[
+                {
+                  title: "Photorealistic Rendering",
+                  description: "High-quality 3D product renders that look indistinguishable from real photographs, perfect for e-commerce and marketing.",
+                  icon: "🎨",
+                },
+                {
+                  title: "360° Product Views",
+                  description: "Interactive 360-degree product visualization that allows customers to explore every angle of your products.",
+                  icon: "🔄",
+                },
+                {
+                  title: "Custom Lighting & Materials",
+                  description: "Advanced lighting setups and material properties that showcase your products in the best possible way.",
+                  icon: "💡",
+                },
+              ].map((feature, index) => (
+                <div
+                  key={index}
+                  className="bg-neutral-800/50 p-8 rounded-2xl border border-neutral-700 hover:border-lime-400/50 transition-all duration-300 hover:scale-105"
+                >
+                  <div className="text-4xl mb-4">{feature.icon}</div>
+                  <h3 className="text-xl font-semibold mb-4 text-white">{feature.title}</h3>
+                  <p className="text-gray-300 leading-relaxed">{feature.description}</p>
                 </div>
-                <p className="mt-4 text-center font-medium">{item.title}</p>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      </section>
-
-      {/* FAQ */}
-      <section className="mx-auto w-full max-w-6xl px-4 py-16">
-        <div className="rounded-2xl bg-secondary p-6 md:p-10">
-          <h3 className="mb-6 text-center text-3xl font-semibold md:text-4xl">FAQ</h3>
-          <div className="mx-auto max-w-3xl">
-            <Accordion type="single" collapsible className="w-full">
-              <AccordionItem value="q1">
-                <AccordionTrigger>Which iPhone do I need?</AccordionTrigger>
-                <AccordionContent>
-                  We would recommend a recent Pro model, due to the heavy importance of ProRAW and larger sensor, only
-                  usually available on the Pro models.
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="q2">
-                <AccordionTrigger>What's included in the course?</AccordionTrigger>
-                <AccordionContent>
-                  Step-by-step lessons, presets, and lifetime access so you can learn at your own pace.
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="q3">
-                <AccordionTrigger>Who is this course for?</AccordionTrigger>
-                <AccordionContent>
-                  Beginners to intermediate users who want to consistently take better photos with their iPhone.
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
-    </main>
-  )
-}
+        </section>
 
-function Feature({
-  icon,
-  title,
-  desc,
-}: {
-  icon: React.ReactNode
-  title: string
-  desc: string
-}) {
-  return (
-    <div className="flex gap-4">
-      <div className="mt-1 flex h-9 w-9 items-center justify-center rounded-lg bg-secondary text-foreground/80">
-        {icon}
-      </div>
-      <div>
-        <h4 className="font-semibold">{title}</h4>
-        <p className="mt-1 text-sm text-muted-foreground">{desc}</p>
-      </div>
-    </div>
-  )
+        {/* Footer */}
+        <Footer />
+      </main>
+    </>
+  );
 }
