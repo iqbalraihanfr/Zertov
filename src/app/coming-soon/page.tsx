@@ -43,14 +43,14 @@ export default function ComingSoonPage() {
     {
       id: 2,
       name: "WhatsApp",
-      designation: "+1 (555) 123-4567",
+      designation: "+62 851-2379-6985",
       image: "/icons/favicon-white.svg",
-      href: "https://wa.link/65mf3i",
+      href: "https://wa.me/6285123796985",
     },
     {
       id: 3,
       name: "Location",
-      designation: "Miami, FL",
+      designation: "Surabaya, Indonesia",
       image: "/icons/favicon-white.svg",
       href: "#",
     },
@@ -137,42 +137,7 @@ export default function ComingSoonPage() {
         </section>
 
         {/* Features Preview Section */}
-        <section className="py-20 px-6 md:px-12 lg:px-20 bg-neutral-900/50">
-          <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-lime-400">
-              What's Coming
-            </h2>
-            
-            <div className="grid md:grid-cols-3 gap-8">
-              {[
-                {
-                  title: "3D Animation Studio",
-                  description: "Professional 3D product animations that bring your products to life with stunning visual effects.",
-                  icon: "🎬",
-                },
-                {
-                  title: "Digital Marketing Solutions",
-                  description: "Comprehensive marketing strategies tailored to boost your online presence and drive conversions.",
-                  icon: "📈",
-                },
-                {
-                  title: "Interactive Experiences",
-                  description: "Immersive web experiences that engage your audience and create lasting impressions.",
-                  icon: "✨",
-                },
-              ].map((feature, index) => (
-                <div
-                  key={index}
-                  className="bg-neutral-800/50 p-8 rounded-2xl border border-neutral-700 hover:border-lime-400/50 transition-all duration-300 hover:scale-105"
-                >
-                  <div className="text-4xl mb-4">{feature.icon}</div>
-                  <h3 className="text-xl font-semibold mb-4 text-white">{feature.title}</h3>
-                  <p className="text-gray-300 leading-relaxed">{feature.description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+       
 
         {/* Footer */}
         <Footer />
