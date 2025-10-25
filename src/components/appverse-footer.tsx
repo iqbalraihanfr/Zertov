@@ -136,7 +136,7 @@ export function AppverseFooter() {
                       href="https://twitter.com/zertov"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="hover:text-lime-300"
+                      className="hover:text-blue-300"
                       aria-label="Follow Zertov on Twitter"
                     >
                       X/Twitter
@@ -148,7 +148,7 @@ export function AppverseFooter() {
                       href="https://www.youtube.com/@zertov"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="hover:text-lime-300"
+                      className="hover:text-blue-300"
                       aria-label="Subscribe to Zertov on YouTube"
                     >
                       YouTube
@@ -160,7 +160,7 @@ export function AppverseFooter() {
                       href="https://instagram.com/zertovagency"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="hover:text-lime-300"
+                      className="hover:text-blue-300"
                       aria-label="Follow Zertov on Instagram"
                     >
                       Instagram

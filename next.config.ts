@@ -1,7 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // Add metadataBase for proper absolute URL resolution in OpenGraph/Twitter cards
+  // metadataBase: new URL('https://zertov.com'),
 };
 
 export default nextConfig;
