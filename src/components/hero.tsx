@@ -5,7 +5,7 @@ import LazyVideo from "./lazy-video"
 export function Hero() {
   const buttonNew = (
     <Button asChild className="rounded-full bg-[#000043] px-6 text-white hover:bg-[#000043]/80">
-      <a href="https://wa.link/rc25na" target="_blank" rel="noopener noreferrer">
+      <a href="https://wa.link/6285123796985" target="_blank" rel="noopener noreferrer">
         Chat With Us
       </a>
     </Button>
