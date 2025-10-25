@@ -5,7 +5,7 @@ import LazyVideo from "./lazy-video"
 export function Hero() {
   const buttonNew = (
     <Button asChild className="rounded-full bg-[#000043] px-6 text-white hover:bg-[#000043]/80">
-      <a href="https://wa.link/6285123796985" target="_blank" rel="noopener noreferrer">
+      <a href="https://wa.me/6285123796985" target="_blank" rel="noopener noreferrer">
         Chat With Us
       </a>
     </Button>
@@ -58,12 +58,12 @@ function PhoneCard({
   videoSrc?: string
 }) {
   return (
-    <div className="relative rounded-[28px] glass-border bg-neutral-900 p-2">
+    <div className="relative rounded-[28px] glass-border bg-black p-2">
       <div className="relative aspect-[9/19] w-full overflow-hidden rounded-2xl bg-black">
         <LazyVideo
           src={
             videoSrc ??
-            "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/b0f3222371106db366a14ca1c29cef55-1b1EWVSa4w3FL2zslcaCGYTy9vcxjF.mp4"
+            "https://obui9usifmdeocuf.public.blob.vercel-storage.com/FULL%20INTRO%21%21.mp4"
           }
           className="absolute inset-0 h-full w-full object-cover"
           autoplay={true}
@@ -90,37 +90,39 @@ function PhoneCard({
 
 const phoneData = [
   {
-    title: "Conversions",
-    sub: "Turn clicks into paying customers.",
+    title: "Teaser",
+    sub: "Teaser video from Zertov",
     tone: "results",
     gradient: "from-[#0b0b0b] via-[#0f172a] to-[#020617]",
     videoSrc:
-      "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/A%20new%20chapter%20in%20the%20story%20of%20success.__Introducing%20the%20new%20TAG%20Heuer%20Carrera%20Day-Date%20collection%2C%20reimagined%20with%20bold%20colors%2C%20refined%20finishes%2C%20and%20upgraded%20functionality%20to%20keep%20you%20focused%20on%20your%20goals.%20__Six%20-nDNoRQyFaZ8oaaoty4XaQz8W8E5bqA.mp4",
+      "https://obui9usifmdeocuf.public.blob.vercel-storage.com/FULL%20TEASER%21%21.mp4",
   },
   {
-    title: "Speed",
-    sub: "Launch in days, not weeks.",
+    title: "Intro",
+    sub: "Intro video from Zertov",
     tone: "speed",
     gradient: "from-[#0b1a0b] via-[#052e16] to-[#022c22]",
   },
   {
-    title: "Social-Ready",
-    sub: "Made for IG, TikTok, and Meta.",
+    title: "Teaser",
+    sub: "Something is coming...",
     tone: "social",
     gradient: "from-[#001028] via-[#0b355e] to-[#052e5e]",
     videoSrc:
-      "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Timeline%201-Ku3Y2Hgaw8hCiFEFg1ELtYp631rSzR.webm",
+      "https://obui9usifmdeocuf.public.blob.vercel-storage.com/FULL%20TEASER%21%21.mp4",
   },
   {
-    title: "Standout",
-    sub: "Be the product no one scrolls past.",
+    title: "Intro",
+    sub: "Intro video from Zertov",
     tone: "standout",
     gradient: "from-[#0b0b0b] via-[#1f2937] to-[#0b1220]",
   },
   {
-    title: "Premium",
+    title: "Teaser",
     sub: "Look like the market leader.",
     tone: "premium",
     gradient: "from-[#0b0b0b] via-[#111827] to-[#052e16]",
+    videoSrc:
+      "https://obui9usifmdeocuf.public.blob.vercel-storage.com/FULL%20TEASER%21%21.mp4",
   },
 ]

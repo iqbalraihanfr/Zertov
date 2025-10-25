@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react"
 
 export default function PhoneVideo({
-  src = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/b0f3222371106db366a14ca1c29cef55-1b1EWVSa4w3FL2zslcaCGYTy9vcxjF.mp4",
+  src = "https://obui9usifmdeocuf.public.blob.vercel-storage.com/FULL%20TEASER%21%21.mp4",
   className = "",
   poster,
 }: { src?: string; className?: string; poster?: string }) {
