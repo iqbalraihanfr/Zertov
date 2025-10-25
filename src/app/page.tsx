@@ -83,7 +83,7 @@ export default function Page() {
         <SiteHeader />
         <Hero />
         {/* <LogoMarquee /> */}
-        <Pricing />
+        {/* <Pricing /> */}
         <AppverseFooter />
       </main>
 

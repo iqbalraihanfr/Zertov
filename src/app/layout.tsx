@@ -1,7 +1,7 @@
 import type React from "react"
 import "./globals.css"
 import type { Metadata } from "next"
-import { Inter } from "next/font/google"
+import { Wix_Madefor_Display } from "next/font/google"
 import Script from "next/script"
 import Plasma from "@/components/plasma"
 import { Suspense } from "react"
@@ -9,7 +9,12 @@ import { Toaster } from "@/components/ui/sonner"
 // import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Analytics } from "@vercel/analytics/react"
 
-const inter = Inter({ subsets: ["latin"], display: "swap" })
+const wixMadefor = Wix_Madefor_Display({ 
+  subsets: ["latin"], 
+  weight: ["400", "500", "600", "700", "800"],
+  display: "swap",
+  variable: "--font-wix-madefor"
+})
 
 export const metadata: Metadata = {
   title: "Zertov | Digital Marketing Agency",
@@ -31,7 +36,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={inter.className}>
+    <html lang="en" className={wixMadefor.className}>
       <head>
         <meta
           name="viewport"

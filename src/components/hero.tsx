@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
 import LazyVideo from "./lazy-video"
+import GradientText from "@/components/GradientText"
 
 export function Hero() {
   const buttonNew = (
@@ -21,7 +22,14 @@ export function Hero() {
           </div>
           <h1 className="mt-3 text-center text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl">
             <span className="block text-black">DIGITAL MARKETING</span>
-            <span className="block text-[#0006aa] drop-shadow-[0_0_20px_rgba(0,6,170,0.35)]">AGENCY</span>
+            <GradientText  colors={["#0006aa", "#000043", "#111111"]}
+              animationSpeed={6}
+              showBorder={false}
+              className=" text-white">
+                AGENCY
+              
+              </GradientText>
+
             {/* <span className="block">FOR BRANDS</span> */}
           </h1>
           <div className="mt-6">{buttonNew}</div>
