@@ -157,7 +157,7 @@ export function AppverseFooter() {
                   <li className="flex items-center gap-2">
                     <Instagram className="h-4 w-4 text-neutral-400" />
                     <a
-                      href="https://instagram.com/zertov"
+                      href="https://instagram.com/zertovagency"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="hover:text-lime-300"

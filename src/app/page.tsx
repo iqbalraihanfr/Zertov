@@ -63,7 +63,7 @@ export default function Page() {
       sameAs: [
         "https://twitter.com/zertov",
         "https://www.youtube.com/@zertov",
-        "https://instagram.com/zertov",
+        "https://instagram.com/zertovagency",
         "https://threads.com/zertov",
       ],
     },
