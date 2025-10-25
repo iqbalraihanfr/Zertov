@@ -4,7 +4,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import Image from "next/image"
-import { Menu, Tag, HelpCircle, FileText, Info, ChevronDown, Building2, Package } from "lucide-react"
+import { Menu, Tag, HelpCircle, FileText, Info, ChevronDown, CircleFadingPlus, Package, Code } from "lucide-react"
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -15,28 +15,29 @@ import {
 } from "@/components/ui/navigation-menu"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
 import { useState } from "react"
+import GradientText from "@/components/GradientText"
 
 export function SiteHeader() {
   const [servicesOpen, setServicesOpen] = useState(false)
 
   const services = [
     {
-      href: "/3D-architecture-visualization-studio",
-      label: "ArchViz Render",
-      icon: Building2,
-      description: "Photoreal 3D renders & CGI walkthroughs",
-    },
-    {
-      href: "/3d-product-rendering",
-      label: "3D Product Rendering",
-      icon: Package,
-      description: "Studio-quality product visuals",
+      href: "/",
+      label: "Web Development",
+      icon: Code,
+      description: "Custom web development for your business",
     },
     {
       href: "/",
-      label: "3D Product Animation",
+      label: "Digital Marketing",
       icon: Package,
-      description: "Motion-led storytelling for products",
+      description: "Digital marketing services for your business",
+    },
+    {
+      href: "/",
+      label: "Social Media Management",
+      icon: CircleFadingPlus,
+      description: "Social media management for your business",
     },
   ]
 
@@ -55,6 +56,13 @@ export function SiteHeader() {
           <Link href="/" className="flex items-center gap-1.5">
             <Image src="/icons/favicon-white.svg" alt="Zertov logo" width={40} height={40} className="h-10 w-10" />
             <span className="font-semibold tracking-wide text-white text-2xl">Zertov</span>
+            {/* <GradientText  colors={["#0006aa",  "#000043", "#0006aa",]}
+              animationSpeed={6}
+              showBorder={false}
+              className=" text-white text-2xl font-semibold tracking-wide">
+                Zertov
+              
+              </GradientText> */}
           </Link>
 
           {/* Desktop Nav with Services Dropdown */}
@@ -110,7 +118,7 @@ export function SiteHeader() {
             <Button
               asChild
               className="bg-[#000043] text-white font-medium rounded-4xl px-6 py-2.5
-                         hover:bg-lime-300 hover:shadow-md hover:scale-[1.02]
+                         hover:bg-[#000043]/80 hover:shadow-md hover:scale-[1.02]
                          transition-all"
             >
               <Link href="#contact">Chat With Us</Link>
@@ -143,7 +151,7 @@ export function SiteHeader() {
                     <CollapsibleTrigger className="flex items-center justify-between w-full px-4 py-3 hover:bg-gray-900 hover:text-purple-300 transition-colors">
                       <div className="flex items-center gap-3">
                         <span className="inline-flex items-center justify-center w-5 h-5 text-gray-400">
-                          <Building2 className="h-4 w-4" />
+                          <CircleFadingPlus className="h-4 w-4" />
                         </span>
                         <span className="text-sm">Services</span>
                       </div>
@@ -185,8 +193,8 @@ export function SiteHeader() {
                 <div className="mt-auto border-t border-gray-800 p-4">
                   <Button
                     asChild
-                    className="w-full bg-lime-400 text-black font-medium rounded-lg px-6 py-2.5
-                               hover:bg-lime-300 hover:shadow-md hover:scale-[1.02]
+                    className="w-full bg-[#000043] text-white font-medium rounded-lg px-6 py-2.5
+                               hover:bg-[#000043]/80 hover:shadow-md hover:scale-[1.02]
                                transition-all"
                   >
                     <Link href="https://wa.me/6285123796985">Get a Quote</Link>

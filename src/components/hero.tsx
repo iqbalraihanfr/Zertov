@@ -21,8 +21,8 @@ export function Hero() {
             <p className="text-sm uppercase tracking-[0.25em] text-[#0006aa]/80">ZERTOV</p>
           </div>
           <h1 className="mt-3 text-center text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl">
-            <span className="block text-black">DIGITAL MARKETING</span>
-            <GradientText  colors={["#0006aa", "#000043", "#111111"]}
+            <span className="block font-bold text-black">DIGITAL MARKETING</span>
+            <GradientText  colors={["#0006aa",  "#000043", "#0006aa",]}
               animationSpeed={6}
               showBorder={false}
               className=" text-white">

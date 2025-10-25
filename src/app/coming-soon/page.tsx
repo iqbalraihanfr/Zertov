@@ -24,11 +24,11 @@ export default function ComingSoonPage() {
     },
     {
       text: "Coming",
-      className: "text-lime-400",
+      className: "text-white",
     },
     {
       text: "Soon",
-      className: "text-lime-400",
+      className: "text-white",
     },
   ];
 
@@ -99,7 +99,7 @@ export default function ComingSoonPage() {
 
             {/* Contact Information with Animated Tooltips */}
             <div className="mb-12">
-              <h3 className="text-xl font-semibold mb-6 text-lime-400">Get in Touch</h3>
+              <h3 className="text-xl font-semibold mb-6 text-white">Get in Touch</h3>
               <div className="flex justify-center items-center gap-6">
                 <AnimatedTooltip items={tooltipItems} />
               </div>
@@ -109,7 +109,7 @@ export default function ComingSoonPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Button
                 asChild
-                className="bg-lime-400 text-black font-semibold px-8 py-3 rounded-full hover:bg-lime-300 hover:scale-105 transition-all duration-300"
+                className="bg-[#000043] text-white font-semibold px-8 py-3 rounded-full hover:bg-[#000043]/80 hover:scale-105 transition-all duration-300"
               >
                 <Link href="/">
                   <ArrowLeft className="mr-2 h-4 w-4" />
@@ -120,9 +120,9 @@ export default function ComingSoonPage() {
               <Button
                 asChild
                 variant="outline"
-                className="border-lime-400 text-lime-400 font-semibold px-8 py-3 rounded-full hover:bg-lime-400 hover:text-black transition-all duration-300"
+                className="border-[#000043] text-black font-semibold px-8 py-3 rounded-full hover:bg-[#000043]/80 hover:text-white transition-all duration-300"
               >
-                <Link href="https://wa.link/65mf3i">
+                <Link href="https://wa.me/6285123796985" target="_blank" rel="noopener noreferrer">
                   <Phone className="mr-2 h-4 w-4" />
                   Contact Us
                 </Link>
