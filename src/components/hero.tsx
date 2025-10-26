@@ -15,10 +15,17 @@ export function Hero() {
   return (
     <section className="relative isolate overflow-hidden">
       <div className="container mx-auto px-4">
-        <div className="flex flex-col items-center justify-center py-14 sm:py-20">
+        <div className="flex flex-col items-center justify-center py-20 sm:py-32">
           <div className="mb-5 flex items-center gap-2">
-            <Image src="/icons/favicon-dark.svg" alt="Zertov logo" width={32} height={32} className="h-8 w-8" />
-            <p className="text-sm uppercase tracking-[0.25em] text-[#0006aa]/80">ZERTOV</p>
+            <Image
+              src="/icons/logo-zertov-black.svg"
+              alt="Zertov Logo Black"
+              width={36}
+              height={36}
+              className="h-8 w-auto"
+              loading="lazy"
+            />
+            {/* <p className="text-sm uppercase tracking-[0.25em] text-[#0006aa]/80">ZERTOV</p> */}
           </div>
           <h1 className="mt-3 text-center text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl">
             <span className="block font-bold text-black">DIGITAL MARKETING</span>

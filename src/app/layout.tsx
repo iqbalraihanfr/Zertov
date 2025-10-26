@@ -3,7 +3,6 @@ import "./globals.css"
 import type { Metadata } from "next"
 import { Wix_Madefor_Display } from "next/font/google"
 import Script from "next/script"
-import Plasma from "@/components/plasma"
 import { Suspense } from "react"
 import { Toaster } from "@/components/ui/sonner"
 // import { SpeedInsights } from "@vercel/speed-insights/next"
@@ -46,7 +45,7 @@ export default function RootLayout({
         {/* Font Preload */}
         <link
           rel="preload"
-          href="/fonts/Inter.woff2"
+          href="/fonts/WixMadeforDisplay.woff2"
           as="font"
           type="font/woff2"
           crossOrigin="anonymous"

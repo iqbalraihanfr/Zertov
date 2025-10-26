@@ -1,14 +1,18 @@
+"use client"
 import { SiteHeader } from "@/components/site-header"
 import { Hero } from "@/components/hero"
 import { LogoMarquee } from "@/components/logo-marquee"
 import { Pricing } from "@/components/pricing"
 import { AppverseFooter } from "@/components/appverse-footer"
 import Script from "next/script"
+import { useSmoothScroll } from "@/hooks/use-smooth-scroll"
 
 // ✅ Force static generation for low TTFB
 export const dynamic = "force-static"
 
 export default function Page() {
+  const scrollRef = useSmoothScroll();
+
   // Structured data for pricing
   const pricingStructuredData = {
     "@context": "https://schema.org",
@@ -79,13 +83,14 @@ export default function Page() {
 
   return (
     <>
-      <main className="min-h-[100dvh] text-white">
-        <SiteHeader />
-        <Hero />
-        {/* <LogoMarquee /> */}
-        {/* <Pricing /> */}
-        <AppverseFooter />
-      </main>
+      <SiteHeader />
+      <div id="scroll-container" ref={scrollRef} data-scroll-container>
+        <main className="min-h-dvh text-white">
+          <Hero />
+          {/* <LogoMarquee /> */}
+          {/* <Pricing /> */}
+          <AppverseFooter />
+        </main>
 
       {/* JSON-LD structured data */}
       <Script
@@ -105,6 +110,7 @@ export default function Page() {
           __html: JSON.stringify(pageStructuredData),
         }}
       />
+      </div>
     </>
   )
 }

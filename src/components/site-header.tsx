@@ -49,7 +49,7 @@ export function SiteHeader() {
   ]
 
   return (
-    <header className="sticky top-0 z-50 p-4">
+    <header className="site-header fixed top-0 left-0 right-0 z-50 p-4">
       <div className="container mx-auto max-w-4xl">
         <div className="flex h-14 items-center justify-between px-6 liquid-glass-header rounded-full">
           {/* Brand Logo */}
