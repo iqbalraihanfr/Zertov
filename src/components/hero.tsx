@@ -47,8 +47,9 @@ export function Hero() {
         typeof document !== "undefined"
           ? (document.getElementById(SCROLLER_ID) as HTMLElement | null)
           : null
+      const useNativeScroll = Boolean(scrollerEl?.dataset.nativeScroll === "true")
 
-      if (!scrollerEl) return
+      if (!scrollerEl && !useNativeScroll) return
 
       const chars = gsap.utils.toArray<HTMLElement>("[data-hero-char]", scope)
       const fades = gsap.utils.toArray<HTMLElement>("[data-hero-fade]", scope)
@@ -92,17 +93,22 @@ export function Hero() {
           const leftTarget = isCompact ? { x: -32, y: 80 } : isWide ? { x: -160, y: 220 } : { x: -160, y: 220 }
           const rightTarget = isCompact ? { x: 32, y: -80 } : isWide ? { x: 160, y: -220 } : { x: 160, y: -220 }
 
+          const scrollTriggerConfig: ScrollTrigger.Vars = {
+            trigger: heroRef.current,
+            start: "top top",
+            end: "bottom top",
+            scrub: true,
+            pin: true,
+            pinSpacing: false,
+            pinType: useNativeScroll ? "fixed" : "transform",
+          }
+
+          if (!useNativeScroll && scrollerEl) {
+            scrollTriggerConfig.scroller = scrollerEl
+          }
+
           const timeline = gsap.timeline({
-            scrollTrigger: {
-              trigger: heroRef.current,
-              scroller: scrollerEl,
-              start: "top top",
-              end: "bottom top",
-              scrub: true,
-              pin: true,
-              pinSpacing: false,
-              pinType: "transform",
-            },
+            scrollTrigger: scrollTriggerConfig,
           })
 
           if (leftPatternRef.current) {

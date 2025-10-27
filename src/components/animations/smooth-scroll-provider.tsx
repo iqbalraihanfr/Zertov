@@ -1,16 +1,18 @@
-'use client'
-import { useEffect, useRef } from 'react'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import type LocomotiveScroll from 'locomotive-scroll'
-import { SCROLLER_DATA_ATTR, SCROLLER_ID } from '@/lib/scroll'
+"use client"
+import { useEffect, useRef } from "react"
+import gsap from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+import type LocomotiveScroll from "locomotive-scroll"
+import { SCROLLER_DATA_ATTR, SCROLLER_ID } from "@/lib/scroll"
 
 type LocomotiveScrollInstance = InstanceType<typeof LocomotiveScroll> & {
   scroll?: { instance: { scroll: { y: number } } }
 }
 
+const DESKTOP_BREAKPOINT = 1024
+
 // Register GSAP plugins
-if (typeof window !== 'undefined') {
+if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger)
 }
 
@@ -29,8 +31,33 @@ export function SmoothScrollProvider({ children }: { children: React.ReactNode }
     let detachScroll: (() => void) | null = null
     let isCanceled = false
 
+    const shouldUseSmoothScroll =
+      typeof window !== "undefined"
+        ? window.matchMedia(`(min-width: ${DESKTOP_BREAKPOINT}px)`).matches
+        : false
+
+    if (!shouldUseSmoothScroll) {
+      scrollContainer.dataset.nativeScroll = "true"
+
+      if (typeof document !== "undefined") {
+        document.body.dataset.smoothScrollReady = "true"
+        window.dispatchEvent(new Event("smooth-scroll:ready"))
+      }
+
+      requestAnimationFrame(() => ScrollTrigger.refresh())
+
+      return () => {
+        delete scrollContainer.dataset.nativeScroll
+
+        if (typeof document !== "undefined") {
+          delete document.body.dataset.smoothScrollReady
+          window.dispatchEvent(new Event("smooth-scroll:teardown"))
+        }
+      }
+    }
+
     const initLocomotiveScroll = async () => {
-      const LocomotiveScroll = (await import('locomotive-scroll')).default
+      const LocomotiveScroll = (await import("locomotive-scroll")).default
 
       if (isCanceled) return
 
@@ -38,7 +65,7 @@ export function SmoothScrollProvider({ children }: { children: React.ReactNode }
         el: scrollContainer,
         smooth: true,
         multiplier: 1,
-        class: 'is-revealed',
+        class: "is-revealed",
         smartphone: {
           smooth: true,
         },
@@ -48,7 +75,7 @@ export function SmoothScrollProvider({ children }: { children: React.ReactNode }
         },
       })
 
-      detachScroll = locomotiveScroll.on('scroll', () => ScrollTrigger.update())
+      detachScroll = locomotiveScroll.on("scroll", () => ScrollTrigger.update())
 
       ScrollTrigger.defaults({ scroller: scrollContainer })
 
@@ -56,7 +83,7 @@ export function SmoothScrollProvider({ children }: { children: React.ReactNode }
         scrollTop(value?: number) {
           const instance = locomotiveScroll
           if (!instance) return 0
-          if (typeof value === 'number') {
+          if (typeof value === "number") {
             instance.scrollTo(value, { duration: 0, disableLerp: true })
             return 0
           }
@@ -70,16 +97,16 @@ export function SmoothScrollProvider({ children }: { children: React.ReactNode }
             height: window.innerHeight,
           }
         },
-        pinType: scrollContainer.style.transform ? 'transform' : 'fixed',
+        pinType: scrollContainer.style.transform ? "transform" : "fixed",
       })
 
       refreshHandler = () => locomotiveScroll?.update()
-      ScrollTrigger.addEventListener('refresh', refreshHandler)
+      ScrollTrigger.addEventListener("refresh", refreshHandler)
       ScrollTrigger.refresh()
 
-      if (typeof document !== 'undefined') {
-        document.body.dataset.smoothScrollReady = 'true'
-        window.dispatchEvent(new Event('smooth-scroll:ready'))
+      if (typeof document !== "undefined") {
+        document.body.dataset.smoothScrollReady = "true"
+        window.dispatchEvent(new Event("smooth-scroll:ready"))
       }
     }
 
@@ -88,15 +115,17 @@ export function SmoothScrollProvider({ children }: { children: React.ReactNode }
     return () => {
       isCanceled = true
 
-      if (typeof document !== 'undefined') {
+      if (typeof document !== "undefined") {
         delete document.body.dataset.smoothScrollReady
-        window.dispatchEvent(new Event('smooth-scroll:teardown'))
+        window.dispatchEvent(new Event("smooth-scroll:teardown"))
       }
+
+      delete scrollContainer.dataset.nativeScroll
 
       detachScroll?.()
 
       if (refreshHandler) {
-        ScrollTrigger.removeEventListener('refresh', refreshHandler)
+        ScrollTrigger.removeEventListener("refresh", refreshHandler)
       }
 
       ScrollTrigger.getAll()
