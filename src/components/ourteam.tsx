@@ -5,61 +5,79 @@ type TeamMember = {
   name: string
   role: string
   photo: string
+  scale?: number
   desktop: {
     top: string
     left: string
-    width: number
     z: number
-    patternClass?: string
+    cloudClass?: string
   }
 }
+
+const BASE_CARD_WIDTH = 260
+const BASE_IMAGE_WIDTH = 220
+const BASE_CLOUD_WIDTH = 260
+
+const CLOUD_IMAGE = "/icons/awan.svg"
 
 const teamMembers: TeamMember[] = [
   {
     name: "Andra Ariloka",
     role: "Content Writer",
     photo: "/team/andra2.png",
-    desktop: { top: "6%", left: "20%", width: 230, z: 30, patternClass: "-rotate-6" },
+    desktop: { top: "6%", left: "18%", z: 30 },
   },
   {
-    name: "Zhera",
+    name: "Zhera Azkia",
     role: "Creative Strategist",
     photo: "/team/zhera2.png",
-    desktop: { top: "0%", left: "50%", width: 240, z: 40, patternClass: "rotate-3" },
+    desktop: { top: "0%", left: "50%", z: 40 },
   },
   {
-    name: "Iqbal",
+    name: "Iqbal Raihan F.R.",
     role: "Web Developer",
     photo: "/team/iqbal.png",
-    desktop: { top: "6%", left: "80%", width: 230, z: 30, patternClass: "rotate-12" },
+    desktop: { top: "6%", left: "82%", z: 30 },
   },
   {
-    name: "Rizal",
+    name: "Rizal Saputra",
     role: "Graphic Designer",
     photo: "/team/rizal.png",
-    desktop: { top: "60%", left: "32%", width: 235, z: 35, patternClass: "-rotate-12" },
+    desktop: { top: "60%", left: "28%", z: 35 },
+  },
+  {
+    name: "Rafif Ramadhan",
+    role: "Production Lead",
+    photo: "/team/rafif.png",
+    desktop: { top: "62%", left: "54%", z: 45 },
   },
   {
     name: "Jiersa Hilal",
     role: "Video Editor",
     photo: "/team/jiersa.png",
-    desktop: { top: "65%", left: "64%", width: 255, z: 50, patternClass: "rotate-[45deg]" },
+    desktop: { top: "65%", left: "78%", z: 50 },
   },
 ]
 
-const PATTERN_IMAGE = "/images/zrtv-pattern.png"
-
 function TeamMemberCard({ member, variant }: { member: TeamMember; variant: "stacked" | "floating" }) {
+  const scale = member.scale ?? 1
+  const cardWidth = BASE_CARD_WIDTH * scale
+  const imageWidth = BASE_IMAGE_WIDTH * scale
+  const cloudWidth = BASE_CLOUD_WIDTH * scale
+  const cloudOffset = cloudWidth * 0.32
+
   const baseStyle: CSSProperties =
     variant === "floating"
       ? {
           top: member.desktop.top,
           left: member.desktop.left,
-          width: member.desktop.width,
+          width: `${cardWidth}px`,
+          maxWidth: "90vw",
           zIndex: member.desktop.z,
         }
       : {
-          width: member.desktop.width,
+          width: `${cardWidth}px`,
+          maxWidth: "90vw",
         }
 
   return (
@@ -75,39 +93,23 @@ function TeamMemberCard({ member, variant }: { member: TeamMember; variant: "sta
           alt={member.name}
           width={420}
           height={540}
-          className="relative z-10 mx-auto w-full max-w-[230px] object-contain transition duration-500 ease-out filter grayscale group-hover:scale-[1.035] group-hover:grayscale-0 group-hover:saturate-110"
+          className="relative z-10 mx-auto object-contain transition duration-500 ease-out filter grayscale group-hover:scale-[1.035] group-hover:grayscale-0 group-hover:saturate-110"
+          style={{ width: `${imageWidth}px`, maxWidth: "100%" }}
           priority={variant === "floating"}
         />
 
         <Image
-          src="/team/penutup.svg"
+          src={CLOUD_IMAGE}
           alt=""
-          width={320}
-          height={220}
+          width={360}
+          height={240}
           aria-hidden="true"
-          className="pointer-events-none absolute bottom-[-120px] left-1/2 z-25 w-[140%] max-w-[360px] -translate-x-1/2"
+          className={`pointer-events-none top-0 absolute left-1/2 z-20 -translate-x-1/2 transition duration-500 group-hover:scale-[1.05] ${member.desktop.cloudClass ?? ""}`}
+          style={{ width: `${cloudWidth}px`, bottom: `-${Math.round(cloudOffset)}px` }}
         />
 
-        <Image
-          src={PATTERN_IMAGE}
-          alt=""
-          width={180}
-          height={180}
-          aria-hidden="true"
-          className={`absolute bottom-[-60px] left-1/2 z-20 w-32 -translate-x-1/2 opacity-80 transition duration-500 group-hover:scale-[1.05] group-hover:opacity-100 ${member.desktop.patternClass ?? ""}`}
-        />
-
-        <Image
-          src={PATTERN_IMAGE}
-          alt=""
-          width={220}
-          height={220}
-          aria-hidden="true"
-          className={`absolute bottom-[-100px] left-1/2 z-30 w-36 -translate-x-1/2 opacity-60 transition duration-500 group-hover:scale-[1.05] group-hover:opacity-90 ${member.desktop.patternClass ?? ""}`}
-        />
       </div>
-      <div className="relative z-40 mt-16 space-y-2">
-        <div className="text-[0.65rem] uppercase tracking-[0.48em] text-lime-500/80">Zertov Crew</div>
+      <div className="relative z-40 mt-14 space-y-2">
         <div className="text-xl font-semibold text-neutral-900">{member.name}</div>
         <div className="text-sm font-medium uppercase text-lime-600">{member.role}</div>
       </div>
@@ -140,7 +142,7 @@ export function OurTeam() {
           </div>
 
           <div className="relative hidden md:block">
-            <div className="relative mx-auto h-[560px] w-full max-w-5xl">
+            <div className="relative mx-auto h-[620px] w-full max-w-5xl">
               {teamMembers.map((member) => (
                 <TeamMemberCard key={`${member.name}-desktop`} member={member} variant="floating" />
               ))}
