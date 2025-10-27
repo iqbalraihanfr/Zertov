@@ -77,61 +77,60 @@ export function Hero() {
 
       const mm = gsap.matchMedia()
 
-      mm.add(
-        {
-          isCompact: "(max-width: 639px)",
-          isMedium: "(min-width: 640px) and (max-width: 1023px)",
-          isLarge: "(min-width: 1024px)",
-        },
-        (context) => {
-          if (!heroRef.current) return
+      if (!useNativeScroll && scrollerEl) {
+        mm.add(
+          {
+            isCompact: "(max-width: 639px)",
+            isMedium: "(min-width: 640px) and (max-width: 1023px)",
+            isLarge: "(min-width: 1024px)",
+          },
+          (context) => {
+            if (!heroRef.current) return
 
-          const conditions = context.conditions ?? {}
-          const isCompact = Boolean(conditions.isCompact)
-          const isWide = Boolean(conditions.isMedium || conditions.isLarge)
+            const conditions = context.conditions ?? {}
+            const isCompact = Boolean(conditions.isCompact)
+            const isWide = Boolean(conditions.isMedium || conditions.isLarge)
 
-          const leftTarget = isCompact ? { x: -32, y: 80 } : isWide ? { x: -160, y: 220 } : { x: -160, y: 220 }
-          const rightTarget = isCompact ? { x: 32, y: -80 } : isWide ? { x: 160, y: -220 } : { x: 160, y: -220 }
+            const leftTarget = isCompact ? { x: -32, y: 80 } : isWide ? { x: -160, y: 220 } : { x: -160, y: 220 }
+            const rightTarget = isCompact ? { x: 32, y: -80 } : isWide ? { x: 160, y: -220 } : { x: 160, y: -220 }
 
-          const scrollTriggerConfig: ScrollTrigger.Vars = {
-            trigger: heroRef.current,
-            start: "top top",
-            end: "bottom top",
-            scrub: true,
-            pin: true,
-            pinSpacing: false,
-            pinType: useNativeScroll ? "fixed" : "transform",
-          }
+            const scrollTriggerConfig: ScrollTrigger.Vars = {
+              trigger: heroRef.current,
+              scroller: scrollerEl,
+              start: "top top",
+              end: "bottom top",
+              scrub: true,
+              pin: true,
+              pinSpacing: false,
+              pinType: "transform",
+            }
 
-          if (!useNativeScroll && scrollerEl) {
-            scrollTriggerConfig.scroller = scrollerEl
-          }
+            const timeline = gsap.timeline({
+              scrollTrigger: scrollTriggerConfig,
+            })
 
-          const timeline = gsap.timeline({
-            scrollTrigger: scrollTriggerConfig,
-          })
+            if (leftPatternRef.current) {
+              timeline.to(
+                leftPatternRef.current,
+                { x: leftTarget.x, y: leftTarget.y, ease: "none" },
+                0,
+              )
+            }
 
-          if (leftPatternRef.current) {
-            timeline.to(
-              leftPatternRef.current,
-              { x: leftTarget.x, y: leftTarget.y, ease: "none" },
-              0,
-            )
-          }
+            if (rightPatternRef.current) {
+              timeline.to(
+                rightPatternRef.current,
+                { x: rightTarget.x, y: rightTarget.y, ease: "none" },
+                0,
+              )
+            }
 
-          if (rightPatternRef.current) {
-            timeline.to(
-              rightPatternRef.current,
-              { x: rightTarget.x, y: rightTarget.y, ease: "none" },
-              0,
-            )
-          }
+            requestAnimationFrame(() => ScrollTrigger.refresh())
 
-          requestAnimationFrame(() => ScrollTrigger.refresh())
-
-          return () => timeline.kill()
-        },
-      )
+            return () => timeline.kill()
+          },
+        )
+      }
 
       return () => mm.kill()
     },
