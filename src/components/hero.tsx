@@ -136,7 +136,7 @@ export function Hero() {
     <section
       id="hero"
       ref={heroRef}
-      className="relative isolate overflow-hidden bg-white pb-48 pt-28 text-neutral-900 sm:pt-36"
+      className="relative isolate flex min-h-[100svh] flex-col overflow-hidden bg-white text-neutral-900"
     >
       <div
         ref={leftPatternRef}
@@ -165,36 +165,34 @@ export function Hero() {
         />
       </div>
 
-      <div className="relative z-10">
-        <div className="container mx-auto px-6 md:px-10">
-          <div className="flex flex-col items-center gap-12 text-center">
-            <h1
-              className="whitespace-nowrap text-3xl font-semibold leading-tight text-neutral-900 capitalize sm:text-5xl md:text-6xl lg:text-7xl"
-              style={{ fontFamily: '"Wix Madefor Display", ui-sans-serif, system-ui, sans-serif' }}
-            >
-              {HERO_TITLE.split("").map((char, index) => (
-                <span
-                  key={`${char}-${index}`}
-                  data-hero-char
-                  className="inline-block bg-gradient-to-b from-neutral-950 to-neutral-500 bg-clip-text text-transparent"
-                >
-                  {char === " " ? "\u00A0" : char}
-                </span>
-              ))}
-            </h1>
+      <div className="relative z-10 flex flex-1 items-center">
+        <div className="container mx-auto flex flex-col items-center justify-center gap-12 px-6 py-16 text-center md:px-10">
+          <h1
+            className="whitespace-nowrap text-3xl font-semibold leading-tight text-neutral-900 capitalize sm:text-5xl md:text-6xl lg:text-7xl"
+            style={{ fontFamily: '"Wix Madefor Display", ui-sans-serif, system-ui, sans-serif' }}
+          >
+            {HERO_TITLE.split("").map((char, index) => (
+              <span
+                key={`${char}-${index}`}
+                data-hero-char
+                className="inline-block bg-gradient-to-b from-neutral-950 to-neutral-500 bg-clip-text text-transparent"
+              >
+                {char === " " ? "\u00A0" : char}
+              </span>
+            ))}
+          </h1>
 
-            <div className="space-y-6 text-lg text-neutral-600 md:text-xl">
-              <p data-hero-fade>{HERO_BODY}</p>
+          <div className="space-y-6 text-lg text-neutral-600 md:text-xl">
+            <p data-hero-fade>{HERO_BODY}</p>
 
-              <div data-hero-fade>
-                <Link
-                  href="#contact"
-                  className="inline-flex items-center gap-2 rounded-full border border-neutral-300 px-6 py-3 text-sm font-semibold uppercase tracking-[0.2em] text-neutral-900 transition-colors hover:border-neutral-900 hover:bg-neutral-900 hover:text-white"
-                >
-                  Start a project
-                  <span aria-hidden="true">→</span>
-                </Link>
-              </div>
+            <div data-hero-fade>
+              <Link
+                href="#contact"
+                className="inline-flex items-center gap-2 rounded-full border border-neutral-300 px-6 py-3 text-sm font-semibold uppercase tracking-[0.2em] text-neutral-900 transition-colors hover:border-neutral-900 hover:bg-neutral-900 hover:text-white"
+              >
+                Start a project
+                <span aria-hidden="true">→</span>
+              </Link>
             </div>
           </div>
         </div>
