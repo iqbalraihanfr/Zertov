@@ -8,8 +8,7 @@ import Link from "next/link"
 import { useEffect, useRef, useState } from "react"
 import { SCROLLER_ID } from "@/lib/scroll"
 
-const HERO_TITLE = "build what you imagine"
-const HERO_PRETITLE = "Thoughtfully engineered experiences"
+const HERO_TITLE = "Build What You Imagine"
 const HERO_BODY =
   "A Surabaya-based creative tech team crafting websites, systems, and digital experiences that actually work — visually, technically, and strategically."
 
@@ -137,54 +136,52 @@ export function Hero() {
     <section
       id="hero"
       ref={heroRef}
-      className="relative isolate overflow-hidden bg-white pb-24 pt-28 text-neutral-900 sm:pt-36"
+      className="relative isolate overflow-hidden bg-white pb-48 pt-28 text-neutral-900 sm:pt-36"
     >
       <div
         ref={leftPatternRef}
-        className="pointer-events-none absolute -left-24 top-20 hidden select-none opacity-70 mix-blend-multiply md:block"
+        className="pointer-events-none absolute left-[-100px] top-20 hidden select-none opacity-70 mix-blend-multiply md:block lg:left-[-130px]"
       >
         <Image
           src="/images/zrtv-pattern.png"
           alt="Zertov pattern accent"
-          width={360}
-          height={480}
+          width={260}
+          height={360}
           priority
-          className="h-auto w-[240px] lg:w-[300px]"
+          className="h-auto w-[200px] lg:w-[260px]"
         />
       </div>
 
       <div
         ref={rightPatternRef}
-        className="pointer-events-none absolute -right-20 bottom-24 hidden select-none opacity-70 mix-blend-multiply md:block"
+        className="pointer-events-none absolute right-[-100px] bottom-24 hidden select-none opacity-70 mix-blend-multiply md:block lg:right-[-130px]"
       >
         <Image
           src="/images/zrtv-pattern.png"
           alt="Zertov pattern accent"
-          width={360}
-          height={480}
-          className="h-auto w-[220px] lg:w-[300px]"
+          width={260}
+          height={360}
+          className="h-auto w-[200px] lg:w-[260px]"
         />
       </div>
 
       <div className="relative z-10">
         <div className="container mx-auto px-6 md:px-10">
-          <div className="grid items-end gap-16 md:grid-cols-[minmax(0,1fr),minmax(0,1.15fr)] lg:gap-24">
-            <div className="space-y-6">
-              <p className="text-sm uppercase tracking-[0.4em] text-neutral-500" data-hero-fade>
-                {HERO_PRETITLE}
-              </p>
-              <h1 className="max-w-xl text-4xl font-semibold leading-tight text-neutral-900 sm:text-5xl md:text-6xl lg:text-7xl">
-                {HERO_TITLE.split("").map((char, index) => (
-                  <span
-                    key={`${char}-${index}`}
-                    data-hero-char
-                    className="inline-block bg-gradient-to-b from-neutral-950 to-neutral-500 bg-clip-text text-transparent"
-                  >
-                    {char === " " ? "\u00A0" : char}
-                  </span>
-                ))}
-              </h1>
-            </div>
+          <div className="flex flex-col items-center gap-12 text-center">
+            <h1
+              className="whitespace-nowrap text-3xl font-semibold leading-tight text-neutral-900 capitalize sm:text-5xl md:text-6xl lg:text-7xl"
+              style={{ fontFamily: '"Wix Madefor Display", ui-sans-serif, system-ui, sans-serif' }}
+            >
+              {HERO_TITLE.split("").map((char, index) => (
+                <span
+                  key={`${char}-${index}`}
+                  data-hero-char
+                  className="inline-block bg-gradient-to-b from-neutral-950 to-neutral-500 bg-clip-text text-transparent"
+                >
+                  {char === " " ? "\u00A0" : char}
+                </span>
+              ))}
+            </h1>
 
             <div className="space-y-6 text-lg text-neutral-600 md:text-xl">
               <p data-hero-fade>{HERO_BODY}</p>

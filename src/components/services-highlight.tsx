@@ -32,7 +32,7 @@ export function ServicesHighlight() {
     <section
       id="services"
       className={cn(
-        "relative z-20 -mt-32 pb-24 pt-16 text-white sm:-mt-40 sm:pb-28 md:-mt-48 lg:-mt-56",
+        "relative z-10 mt-0 pb-24 pt-16 text-white sm:pb-28",
         colors.gradients.vertical,
       )}
     >
