@@ -3,6 +3,7 @@ import { SiteHeader } from "@/components/site-header"
 import { Hero } from "@/components/hero"
 import { LogoMarquee } from "@/components/logo-marquee"
 import { AppverseFooter } from "@/components/appverse-footer"
+import { ServicesHighlight } from "@/components/services-highlight"
 import Script from "next/script"
 import { SmoothScrollProvider } from "@/components/animations/smooth-scroll-provider"
 
@@ -38,6 +39,7 @@ export default function Page() {
       <SmoothScrollProvider>
         <main className="min-h-dvh bg-white text-neutral-900">
           <Hero />
+          <ServicesHighlight />
           {/* <LogoMarquee /> */}
         </main>
         <AppverseFooter />

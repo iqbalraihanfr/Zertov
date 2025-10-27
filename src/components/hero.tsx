@@ -2,9 +2,10 @@
 
 import { useGSAP } from "@gsap/react"
 import gsap from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
 import Image from "next/image"
 import Link from "next/link"
-import { useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import { SCROLLER_ID } from "@/lib/scroll"
 
 const HERO_TITLE = "build what you imagine"
@@ -16,9 +17,30 @@ export function Hero() {
   const heroRef = useRef<HTMLElement | null>(null)
   const leftPatternRef = useRef<HTMLDivElement | null>(null)
   const rightPatternRef = useRef<HTMLDivElement | null>(null)
+  const [scrollReady, setScrollReady] = useState<boolean>(() => {
+    if (typeof document === "undefined") return false
+    return document.body.dataset.smoothScrollReady === "true"
+  })
+
+  useEffect(() => {
+    if (typeof window === "undefined") return
+
+    const handleReady = () => setScrollReady(true)
+    const handleTeardown = () => setScrollReady(false)
+
+    window.addEventListener("smooth-scroll:ready", handleReady)
+    window.addEventListener("smooth-scroll:teardown", handleTeardown)
+
+    return () => {
+      window.removeEventListener("smooth-scroll:ready", handleReady)
+      window.removeEventListener("smooth-scroll:teardown", handleTeardown)
+    }
+  }, [])
 
   useGSAP(
     () => {
+      if (!scrollReady) return
+
       const scope = heroRef.current
       if (!scope) return
 
@@ -57,16 +79,19 @@ export function Hero() {
 
       mm.add(
         {
-          isMobile: "(max-width: 767px)",
-          isDesktop: "(min-width: 768px)",
+          isCompact: "(max-width: 639px)",
+          isMedium: "(min-width: 640px) and (max-width: 1023px)",
+          isLarge: "(min-width: 1024px)",
         },
         (context) => {
           if (!heroRef.current) return
 
           const conditions = context.conditions ?? {}
-          const isMobile = Boolean(conditions.isMobile)
-          const leftTarget = isMobile ? { x: -40, y: 90 } : { x: -120, y: 180 }
-          const rightTarget = isMobile ? { x: 40, y: -90 } : { x: 120, y: -180 }
+          const isCompact = Boolean(conditions.isCompact)
+          const isWide = Boolean(conditions.isMedium || conditions.isLarge)
+
+          const leftTarget = isCompact ? { x: -32, y: 80 } : isWide ? { x: -160, y: 220 } : { x: -160, y: 220 }
+          const rightTarget = isCompact ? { x: 32, y: -80 } : isWide ? { x: 160, y: -220 } : { x: 160, y: -220 }
 
           const timeline = gsap.timeline({
             scrollTrigger: {
@@ -97,13 +122,15 @@ export function Hero() {
             )
           }
 
+          requestAnimationFrame(() => ScrollTrigger.refresh())
+
           return () => timeline.kill()
         },
       )
 
       return () => mm.kill()
     },
-    { scope: heroRef },
+    { scope: heroRef, dependencies: [scrollReady] },
   )
 
   return (
