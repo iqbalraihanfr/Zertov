@@ -2,14 +2,10 @@
 import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import type LocomotiveScroll from 'locomotive-scroll'
 import { SCROLLER_DATA_ATTR, SCROLLER_ID } from '@/lib/scroll'
 
-type LocomotiveScrollInstance = {
-  update: () => void
-  destroy: () => void
-  on: (event: string, callback: (...args: unknown[]) => void) => void
-  off: (event: string, callback: (...args: unknown[]) => void) => void
-  scrollTo: (target: number | string | HTMLElement, options?: { duration?: number; disableLerp?: boolean }) => void
+type LocomotiveScrollInstance = InstanceType<typeof LocomotiveScroll> & {
   scroll?: { instance: { scroll: { y: number } } }
 }
 
@@ -30,7 +26,7 @@ export function SmoothScrollProvider({ children }: { children: React.ReactNode }
 
     let locomotiveScroll: LocomotiveScrollInstance | null = null
     let refreshHandler: (() => void) | null = null
-    let scrollHandler: (() => void) | null = null
+    let detachScroll: (() => void) | null = null
     let isCanceled = false
 
     const initLocomotiveScroll = async () => {
@@ -52,19 +48,19 @@ export function SmoothScrollProvider({ children }: { children: React.ReactNode }
         },
       })
 
-      scrollHandler = () => ScrollTrigger.update()
-      locomotiveScroll.on('scroll', scrollHandler)
+      detachScroll = locomotiveScroll.on('scroll', () => ScrollTrigger.update())
 
       ScrollTrigger.defaults({ scroller: scrollContainer })
 
       ScrollTrigger.scrollerProxy(scrollContainer, {
-        scrollTop(value) {
-          if (!locomotiveScroll) return 0
-          if (arguments.length) {
-            locomotiveScroll.scrollTo(value as number, { duration: 0, disableLerp: true })
+        scrollTop(value?: number) {
+          const instance = locomotiveScroll
+          if (!instance) return 0
+          if (typeof value === 'number') {
+            instance.scrollTo(value, { duration: 0, disableLerp: true })
             return 0
           }
-          return locomotiveScroll.scroll?.instance.scroll.y ?? 0
+          return instance.scroll?.instance.scroll.y ?? 0
         },
         getBoundingClientRect() {
           return {
@@ -97,9 +93,7 @@ export function SmoothScrollProvider({ children }: { children: React.ReactNode }
         window.dispatchEvent(new Event('smooth-scroll:teardown'))
       }
 
-      if (scrollHandler && locomotiveScroll?.off) {
-        locomotiveScroll.off('scroll', scrollHandler)
-      }
+      detachScroll?.()
 
       if (refreshHandler) {
         ScrollTrigger.removeEventListener('refresh', refreshHandler)
