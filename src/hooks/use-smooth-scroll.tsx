@@ -13,13 +13,21 @@ export function useSmoothScroll() {
 
   useEffect(() => {
     let locomotiveScroll: any;
+    let refreshHandler: (() => void) | null = null;
+    let scrollHandler: (() => void) | null = null;
+    let isCanceled = false;
 
     const initScroll = async () => {
       try {
+        const scrollEl = scrollRef.current;
+        if (!scrollEl) return;
+
         const LocomotiveScroll = (await import('locomotive-scroll')).default;
-        
+
+        if (isCanceled) return;
+
         locomotiveScroll = new LocomotiveScroll({
-          el: scrollRef.current!,
+          el: scrollEl,
           smooth: true,
           multiplier: 1,
           class: 'is-revealed',
@@ -27,9 +35,12 @@ export function useSmoothScroll() {
           tablet: { smooth: true, breakpoint: 1024 }
         });
 
-        locomotiveScroll.on('scroll', ScrollTrigger.update);
+        scrollHandler = () => ScrollTrigger.update();
+        locomotiveScroll.on('scroll', scrollHandler);
 
-        ScrollTrigger.scrollerProxy(scrollRef.current, {
+        ScrollTrigger.defaults({ scroller: scrollEl });
+
+        ScrollTrigger.scrollerProxy(scrollEl, {
           scrollTop(value) {
             return arguments.length
               ? locomotiveScroll.scrollTo(value, { duration: 0, disableLerp: true })
@@ -46,7 +57,8 @@ export function useSmoothScroll() {
           pinType: scrollRef.current!.style.transform ? 'transform' : 'fixed'
         });
 
-        ScrollTrigger.addEventListener('refresh', () => locomotiveScroll.update());
+        refreshHandler = () => locomotiveScroll?.update();
+        ScrollTrigger.addEventListener('refresh', refreshHandler);
         ScrollTrigger.refresh();
       } catch (error) {
         console.error('Error initializing Locomotive Scroll:', error);
@@ -56,8 +68,24 @@ export function useSmoothScroll() {
     initScroll();
 
     return () => {
+      isCanceled = true;
+
+      if (scrollHandler && locomotiveScroll?.off) {
+        locomotiveScroll.off('scroll', scrollHandler);
+      }
+
+      if (refreshHandler) {
+        ScrollTrigger.removeEventListener('refresh', refreshHandler);
+      }
+
+      const scrollEl = scrollRef.current;
+      ScrollTrigger.getAll()
+        .filter(trigger => trigger.scroller === scrollEl)
+        .forEach(trigger => trigger.kill());
+
+      ScrollTrigger.defaults({});
+
       if (locomotiveScroll) locomotiveScroll.destroy();
-      ScrollTrigger.getAll().forEach(t => t.kill());
     };
   }, []);
 

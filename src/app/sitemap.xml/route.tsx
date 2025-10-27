@@ -1,6 +1,6 @@
 const URLS = [
   { url: "/", priority: "1.0", changefreq: "weekly" },
-  { url: "/#pricing", priority: "0.9", changefreq: "weekly" },
+  { url: "/our-team", priority: "0.9", changefreq: "weekly" },
   { url: "/faq", priority: "0.8", changefreq: "monthly" },
   { url: "/About", priority: "0.7", changefreq: "monthly" },
   { url: "/revisions", priority: "0.6", changefreq: "monthly" },

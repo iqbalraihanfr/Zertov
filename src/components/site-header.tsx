@@ -20,7 +20,7 @@ import GradientText from "@/components/GradientText"
 export function SiteHeader() {
   const [servicesOpen, setServicesOpen] = useState(false)
 
-  const services = [
+  const service = [
     {
       href: "/",
       label: "Web Development",
@@ -42,9 +42,9 @@ export function SiteHeader() {
   ]
 
   const links = [
-    { href: "#pricing", label: "Pricing", icon: Tag },
-    { href: "faq", label: "FAQ", icon: HelpCircle },
-    { href: "#blog", label: "Blog", icon: FileText },
+    { href: "/our-team", label: "Our Team", icon: Tag },
+    // { href: "faq", label: "FAQ", icon: HelpCircle },
+    // { href: "#blog", label: "Blog", icon: FileText },
     { href: "coming-soon", label: "About", icon: Info },
   ]
 
@@ -80,7 +80,7 @@ export function SiteHeader() {
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
                     <ul className="grid w-[280px] gap-2 p-3 bg-gray-950/95 backdrop-blur-xl border border-gray-800 rounded-lg">
-                      {services.map((service) => (
+                      {service.map((service) => (
                         <li key={service.href}>
                           <NavigationMenuLink asChild>
                             <Link
@@ -161,7 +161,7 @@ export function SiteHeader() {
                     </CollapsibleTrigger>
                     <CollapsibleContent>
                       <div className="flex flex-col bg-gray-900/50 border-l-2 border-purple-300/30 ml-4">
-                        {services.map((service) => (
+                        {service.map((service) => (
                           <Link
                             key={service.href}
                             href={service.href}

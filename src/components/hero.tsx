@@ -1,143 +1,180 @@
-import { Button } from "@/components/ui/button"
+'use client'
+
+import { useGSAP } from "@gsap/react"
+import gsap from "gsap"
 import Image from "next/image"
-import LazyVideo from "./lazy-video"
-import GradientText from "@/components/GradientText"
+import Link from "next/link"
+import { useRef } from "react"
+import { SCROLLER_ID } from "@/lib/scroll"
+
+const HERO_TITLE = "we build what you imagine"
+const HERO_PRETITLE = "Thoughtfully engineered experiences"
+const HERO_BODY =
+  "A Surabaya-based creative tech team crafting websites, systems, and digital experiences that actually work — visually, technically, and strategically."
 
 export function Hero() {
-  const buttonNew = (
-    <Button asChild className="rounded-full bg-[#000043] px-6 text-white hover:bg-[#000043]/80">
-      <a href="https://wa.me/6285123796985" target="_blank" rel="noopener noreferrer">
-        Chat With Us
-      </a>
-    </Button>
+  const heroRef = useRef<HTMLElement | null>(null)
+  const leftPatternRef = useRef<HTMLDivElement | null>(null)
+  const rightPatternRef = useRef<HTMLDivElement | null>(null)
+
+  useGSAP(
+    () => {
+      const scope = heroRef.current
+      if (!scope) return
+
+      const scrollerEl =
+        typeof document !== "undefined"
+          ? (document.getElementById(SCROLLER_ID) as HTMLElement | null)
+          : null
+
+      if (!scrollerEl) return
+
+      const chars = gsap.utils.toArray<HTMLElement>("[data-hero-char]", scope)
+      const fades = gsap.utils.toArray<HTMLElement>("[data-hero-fade]", scope)
+
+      if (chars.length) {
+        gsap.from(chars, {
+          yPercent: 110,
+          opacity: 0,
+          duration: 1.4,
+          ease: "expo.out",
+          stagger: 0.04,
+        })
+      }
+
+      if (fades.length) {
+        gsap.from(fades, {
+          opacity: 0,
+          y: 24,
+          duration: 1.2,
+          ease: "power3.out",
+          stagger: 0.15,
+          delay: 0.35,
+        })
+      }
+
+      const mm = gsap.matchMedia()
+
+      mm.add(
+        {
+          isMobile: "(max-width: 767px)",
+          isDesktop: "(min-width: 768px)",
+        },
+        (context) => {
+          if (!heroRef.current) return
+
+          const conditions = context.conditions ?? {}
+          const isMobile = Boolean(conditions.isMobile)
+          const leftTarget = isMobile ? { x: -40, y: 90 } : { x: -120, y: 180 }
+          const rightTarget = isMobile ? { x: 40, y: -90 } : { x: 120, y: -180 }
+
+          const timeline = gsap.timeline({
+            scrollTrigger: {
+              trigger: heroRef.current,
+              scroller: scrollerEl,
+              start: "top top",
+              end: "bottom top",
+              scrub: true,
+              pin: true,
+              pinSpacing: false,
+              pinType: "transform",
+            },
+          })
+
+          if (leftPatternRef.current) {
+            timeline.to(
+              leftPatternRef.current,
+              { x: leftTarget.x, y: leftTarget.y, ease: "none" },
+              0,
+            )
+          }
+
+          if (rightPatternRef.current) {
+            timeline.to(
+              rightPatternRef.current,
+              { x: rightTarget.x, y: rightTarget.y, ease: "none" },
+              0,
+            )
+          }
+
+          return () => timeline.kill()
+        },
+      )
+
+      return () => mm.kill()
+    },
+    { scope: heroRef },
   )
 
   return (
-    <section className="relative isolate overflow-hidden">
-      <div className="container mx-auto px-4">
-        <div className="flex flex-col items-center justify-center py-20 sm:py-32">
-          <div className="mb-5 flex items-center gap-2">
-            <Image
-              src="/icons/logo-zertov-black.svg"
-              alt="Zertov Logo Black"
-              width={36}
-              height={36}
-              className="h-8 w-auto"
-              loading="lazy"
-            />
-            {/* <p className="text-sm uppercase tracking-[0.25em] text-[#0006aa]/80">ZERTOV</p> */}
-          </div>
-          <h1 className="mt-3 text-center text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl">
-            <span className="block font-bold text-black">DIGITAL MARKETING</span>
-            <GradientText  colors={["#0006aa",  "#000043", "#0006aa",]}
-              animationSpeed={6}
-              showBorder={false}
-              className=" text-white">
-                AGENCY
-              
-              </GradientText>
+    <section
+      id="hero"
+      ref={heroRef}
+      className="relative isolate overflow-hidden bg-white pb-24 pt-28 text-neutral-900 sm:pt-36"
+    >
+      <div
+        ref={leftPatternRef}
+        className="pointer-events-none absolute -left-24 top-20 hidden select-none opacity-70 mix-blend-multiply md:block"
+      >
+        <Image
+          src="/images/zrtv-pattern.png"
+          alt="Zertov pattern accent"
+          width={360}
+          height={480}
+          priority
+          className="h-auto w-[240px] lg:w-[300px]"
+        />
+      </div>
 
-            {/* <span className="block">FOR BRANDS</span> */}
-          </h1>
-          <div className="mt-6">{buttonNew}</div>
+      <div
+        ref={rightPatternRef}
+        className="pointer-events-none absolute -right-20 bottom-24 hidden select-none opacity-70 mix-blend-multiply md:block"
+      >
+        <Image
+          src="/images/zrtv-pattern.png"
+          alt="Zertov pattern accent"
+          width={360}
+          height={480}
+          className="h-auto w-[220px] lg:w-[300px]"
+        />
+      </div>
 
-          {/* Phone grid mimic */}
-          <div className="mt-10 grid w-full gap-4 grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5">
-            {phoneData.map((p, i) => {
-              const visibility = i <= 2 ? "block" : i === 3 ? "hidden md:block" : i === 4 ? "hidden xl:block" : "hidden"
+      <div className="relative z-10">
+        <div className="container mx-auto px-6 md:px-10">
+          <div className="grid items-end gap-16 md:grid-cols-[minmax(0,1fr),minmax(0,1.15fr)] lg:gap-24">
+            <div className="space-y-6">
+              <p className="text-sm uppercase tracking-[0.4em] text-neutral-500" data-hero-fade>
+                {HERO_PRETITLE}
+              </p>
+              <h1 className="max-w-xl text-4xl font-semibold leading-tight text-neutral-900 sm:text-5xl md:text-6xl lg:text-7xl">
+                {HERO_TITLE.split("").map((char, index) => (
+                  <span
+                    key={`${char}-${index}`}
+                    data-hero-char
+                    className="inline-block bg-gradient-to-b from-neutral-950 to-neutral-500 bg-clip-text text-transparent"
+                  >
+                    {char === " " ? "\u00A0" : char}
+                  </span>
+                ))}
+              </h1>
+            </div>
 
-              return (
-                <div key={i} className={visibility}>
-                  <PhoneCard title={p.title} sub={p.sub} tone={p.tone} gradient={p.gradient} videoSrc={p.videoSrc} />
-                </div>
-              )
-            })}
+            <div className="space-y-6 text-lg text-neutral-600 md:text-xl">
+              <p data-hero-fade>{HERO_BODY}</p>
+
+              <div data-hero-fade>
+                <Link
+                  href="#contact"
+                  className="inline-flex items-center gap-2 rounded-full border border-neutral-300 px-6 py-3 text-sm font-semibold uppercase tracking-[0.2em] text-neutral-900 transition-colors hover:border-neutral-900 hover:bg-neutral-900 hover:text-white"
+                >
+                  Start a project
+                  <span aria-hidden="true">→</span>
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
   )
 }
-
-function PhoneCard({
-  title = "8°",
-  sub = "Clear night. Great for render farm runs.",
-  tone = "calm",
-  gradient = "from-[#0f172a] via-[#14532d] to-[#052e16]",
-  videoSrc,
-}: {
-  title?: string
-  sub?: string
-  tone?: string
-  gradient?: string
-  videoSrc?: string
-}) {
-  return (
-    <div className="relative rounded-[28px] glass-border bg-black p-2">
-      <div className="relative aspect-[9/19] w-full overflow-hidden rounded-2xl bg-black">
-        <LazyVideo
-          src={
-            videoSrc ??
-            "https://obui9usifmdeocuf.public.blob.vercel-storage.com/FULL%20INTRO%21%21.mp4"
-          }
-          className="absolute inset-0 h-full w-full object-cover"
-          autoplay={true}
-          loop={true}
-          muted={true}
-          playsInline={true}
-          aria-label={`${title} - ${sub}`}
-        />
-
-        <div className="relative z-10 p-3">
-          <div className="mx-auto mb-3 h-1.5 w-16 rounded-full bg-white/20" />
-          <div className="space-y-1 px-1">
-            <div className="text-3xl font-bold leading-snug text-white/90">{title}</div>
-            <p className="text-xs text-white/70">{sub}</p>
-            <div className="mt-3 inline-flex items-center rounded-full bg-black/40 px-2 py-0.5 text-[10px] uppercase tracking-wider text-white">
-              {tone === "calm" ? "skitbit app" : tone}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  )
-}
-
-const phoneData = [
-  {
-    title: "Teaser",
-    sub: "Teaser video from Zertov",
-    tone: "results",
-    gradient: "from-[#0b0b0b] via-[#0f172a] to-[#020617]",
-    videoSrc:
-      "https://obui9usifmdeocuf.public.blob.vercel-storage.com/FULL%20TEASER%21%21.mp4",
-  },
-  {
-    title: "Intro",
-    sub: "Intro video from Zertov",
-    tone: "speed",
-    gradient: "from-[#0b1a0b] via-[#052e16] to-[#022c22]",
-  },
-  {
-    title: "Teaser",
-    sub: "Something is coming...",
-    tone: "social",
-    gradient: "from-[#001028] via-[#0b355e] to-[#052e5e]",
-    videoSrc:
-      "https://obui9usifmdeocuf.public.blob.vercel-storage.com/FULL%20TEASER%21%21.mp4",
-  },
-  {
-    title: "Intro",
-    sub: "Intro video from Zertov",
-    tone: "standout",
-    gradient: "from-[#0b0b0b] via-[#1f2937] to-[#0b1220]",
-  },
-  {
-    title: "Teaser",
-    sub: "Look like the market leader.",
-    tone: "premium",
-    gradient: "from-[#0b0b0b] via-[#111827] to-[#052e16]",
-    videoSrc:
-      "https://obui9usifmdeocuf.public.blob.vercel-storage.com/FULL%20TEASER%21%21.mp4",
-  },
-]
