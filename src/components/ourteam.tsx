@@ -80,6 +80,15 @@ function TeamMemberCard({ member, variant }: { member: TeamMember; variant: "sta
         />
 
         <Image
+          src="/team/penutup.svg"
+          alt=""
+          width={320}
+          height={220}
+          aria-hidden="true"
+          className="pointer-events-none absolute bottom-[-120px] left-1/2 z-25 w-[140%] max-w-[360px] -translate-x-1/2"
+        />
+
+        <Image
           src={PATTERN_IMAGE}
           alt=""
           width={180}

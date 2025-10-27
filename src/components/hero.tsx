@@ -7,7 +7,7 @@ import Link from "next/link"
 import { useRef } from "react"
 import { SCROLLER_ID } from "@/lib/scroll"
 
-const HERO_TITLE = "we build what you imagine"
+const HERO_TITLE = "build what you imagine"
 const HERO_PRETITLE = "Thoughtfully engineered experiences"
 const HERO_BODY =
   "A Surabaya-based creative tech team crafting websites, systems, and digital experiences that actually work — visually, technically, and strategically."

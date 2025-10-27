@@ -53,11 +53,11 @@ export function AppverseFooter() {
       </div>
 
       {/* Download the app */}
-      <div className="container mx-auto px-4 py-12 sm:py-16">
+      {/* <div className="container mx-auto px-4 py-12 sm:py-16">
         <Card className="relative overflow-hidden rounded-3xl liquid-glass p-6 sm:p-10">
-          <div className="relative grid items-center gap-8 md:grid-cols-2">
+          <div className="relative grid items-center gap-8 md:grid-cols-2"> */}
             {/* Left copy */}
-            <div>
+            {/* <div>
               <p className="mb-2 text-[11px] tracking-widest text-white">STREAMLINE YOUR LAUNCHES</p>
               <h3 className="text-2xl font-bold leading-tight text-white sm:text-3xl">
                 Preview &amp; approve high-end 3D visuals from anywhere
@@ -66,12 +66,12 @@ export function AppverseFooter() {
                 Review renders, leave timestamped comments, and approve scenes from anywhere. Using our revision &amp;
                 collaboration tools
               </p>
-            </div>
+            </div> */}
 
             {/* Right mockup */}
-            <div className="mx-auto w-full max-w-[320px]">
+            {/* <div className="mx-auto w-full max-w-[320px]">
               <div className="relative rounded-[28px] liquid-glass p-2 shadow-2xl">
-                <div className="relative aspect-[9/19] w-full overflow-hidden rounded-2xl bg-black">
+                <div className="relative aspect-[9/19] w-full overflow-hidden rounded-2xl bg-black"> */}
                   {/* Lazy-loaded video fills the screen */}
                   {/* <LazyVideo
                     src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Timeline%202-YFaCK7cEiHWSMRv8XEHaLCoYj2SUAi.mp4"
@@ -83,7 +83,7 @@ export function AppverseFooter() {
                     aria-label="Skitbit app preview - approvals made easy"
                   /> */}
                   {/* On-screen content */}
-                  <div className="relative p-3">
+                  {/* <div className="relative p-3">
                     <div className="mx-auto mb-3 h-1.5 w-16 rounded-full bg-white/20" />
                     <div className="space-y-1 px-1">
                       <div className="text-5xl font-extrabold text-white">Approvals Made Easy</div>
@@ -98,10 +98,10 @@ export function AppverseFooter() {
             </div>
           </div>
         </Card>
-      </div>
+      </div> */}
 
       {/* Footer */}
-      <footer className="border-t border-white/10 pb-20 md:pb-10">
+      <footer className="border-t border-white/10 md:pb-5">
         <div className="container mx-auto px-4 py-10">
           <div className="grid gap-8 md:grid-cols-[1.2fr_1fr_1fr]">
             {/* Brand */}
