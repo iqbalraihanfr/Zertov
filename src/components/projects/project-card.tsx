@@ -61,15 +61,15 @@ export function ProjectCard({ project, className }: ProjectCardProps) {
           <Badge
             className="px-3 py-1 text-[0.7rem] font-semibold uppercase tracking-widest shadow-sm"
             style={{
-              backgroundColor: `${brandColors.zaffre}14`,
-              color: brandColors.cetaceanBlue,
+              backgroundColor: `${brandColors.white}14`,
+              color: brandColors.white,
             }}
           >
             {project.status}
           </Badge>
           {formattedDate ? (
-            <span className="inline-flex items-center gap-1 rounded-full bg-white/90 px-3 py-1 text-[0.7rem] shadow-sm backdrop-blur">
-              <CalendarDays className="h-3.5 w-3.5" style={{ color: brandColors.zaffre }} />
+            <span className="inline-flex text-white items-center gap-1 rounded-full glass-border-enhanced px-3 py-1 text-[0.7rem] shadow-sm backdrop-blur">
+              <CalendarDays className="h-3.5 w-3.5" style={{ color: brandColors.white }} />
               {formattedDate}
             </span>
           ) : null}

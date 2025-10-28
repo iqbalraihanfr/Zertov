@@ -4,6 +4,7 @@ export const brandColors = {
   zaffre: "#0006AA", // Deep blue - primary brand color
   cetaceanBlue: "#000043", // Extremely dark blue - secondary
   chineseBlack: "#111111", // Soft black - accent/text
+  white: "#FFFFFF", // White - background
 };
 
 export const colors = {
