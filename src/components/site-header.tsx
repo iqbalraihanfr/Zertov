@@ -22,19 +22,19 @@ export function SiteHeader() {
 
   const service = [
     {
-      href: "/",
+      href: "/projects",
       label: "Web Development",
       icon: Code,
       description: "Custom web development for your business",
     },
     {
-      href: "/",
+      href: "/projects",
       label: "Digital Marketing",
       icon: Package,
       description: "Digital marketing services for your business",
     },
     {
-      href: "/",
+      href: "/projects",
       label: "Social Media Management",
       icon: CircleFadingPlus,
       description: "Social media management for your business",
@@ -46,7 +46,7 @@ export function SiteHeader() {
     { href: "/our-team", label: "Our Team", icon: Tag },
     // { href: "faq", label: "FAQ", icon: HelpCircle },
     // { href: "#blog", label: "Blog", icon: FileText },
-    { href: "coming-soon", label: "About", icon: Info },
+    // { href: "coming-soon", label: "About", icon: Info },
   ]
 
   return (
@@ -82,7 +82,7 @@ export function SiteHeader() {
                   <NavigationMenuContent>
                     <ul className="grid w-[280px] gap-2 p-3 bg-gray-950/95 backdrop-blur-xl border border-gray-800 rounded-lg">
                       {service.map((service) => (
-                        <li key={service.href}>
+                        <li key={service.label}>
                           <NavigationMenuLink asChild>
                             <Link
                               href={service.href}
@@ -161,10 +161,10 @@ export function SiteHeader() {
                       />
                     </CollapsibleTrigger>
                     <CollapsibleContent>
-                      <div className="flex flex-col bg-gray-900/50 border-l-2 border-purple-300/30 ml-4">
+                      <div className="flex flex-col bg-white border-l-2 border-purple-300/30 ml-4">
                         {service.map((service) => (
                           <Link
-                            key={service.href}
+                            key={service.label}
                             href={service.href}
                             className="flex items-center gap-3 pl-8 pr-4 py-2.5 hover:bg-gray-900 hover:text-purple-300 transition-colors"
                           >

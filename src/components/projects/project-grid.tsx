@@ -2,6 +2,7 @@ import type { ReactNode } from "react"
 
 import { Project } from "@/lib/types/project"
 import { cn } from "@/lib/utils"
+import { colors } from "@/lib/utils/colors"
 
 import { ProjectCard } from "./project-card"
 
@@ -14,7 +15,14 @@ interface ProjectGridProps {
 export function ProjectGrid({ projects, className, emptyState }: ProjectGridProps) {
   if (!projects.length) {
     return (
-      <div className="rounded-3xl border border-neutral-200 bg-neutral-50 p-10 text-center text-neutral-500">
+      <div
+        className={cn(
+          "rounded-3xl border p-10 text-center",
+          colors.background.card,
+          colors.border.primary,
+          colors.text.secondary,
+        )}
+      >
         {emptyState ?? "No projects match your filters yet."}
       </div>
     )

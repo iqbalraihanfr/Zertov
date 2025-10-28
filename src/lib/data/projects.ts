@@ -2,30 +2,27 @@ import { Project } from "@/lib/types/project"
 
 export const projects: Project[] = [
   {
-    slug: "mirai-gamification-platform",
-    title: "Mirai Gamification Platform",
+    slug: "legowo-handcrafted-toys",
+    title: "Legowo.id Handcrafted Toys",
     description:
-      "AI-driven recruitment platform that reimagines hiring with immersive gamified assessments and deep candidate insights.",
-    category: ["AI", "Product"],
+      "Story-led storefront for Legowo, an Indonesian UMKM crafting educational wooden toys that celebrate local culture and imaginative play.",
+    category: ["E-commerce", "Retail"],
     status: "Completed",
-    thumbnail: "/images/zrtv-pattern.png",
-    images: ["/images/zrtv-pattern.png", "/placeholder.jpg"],
-    tags: ["AI", "Gamification", "Next.js", "Tailwind CSS"],
+    thumbnail: "/projects/legowo/lplegowo.png",
+    images: ["/projects/legowo/lplegowo.png", "/projects/legowo/aboutlegowo.png", "/projects/legowo/produklegowo.png"],
+    tags: ["nextjs", "tailwindcss", "analytics"],
     metrics: {
-      participants: "200+ teams",
-      runtime: "4 months",
-      impact: "Top 1 innovation challenge winner",
+      productShowcase: "Modular catalog highlighting handcrafted toy lines",
+      storytelling: "Narrative-rich about section for the founding family",
+      conversionHub: "Persistent WhatsApp & Instagram CTAs for fast enquiries",
     },
     highlightsIntro:
-      "Mirai merges AI with playful mechanics so hiring teams can measure potential through immersive, bias-resistant journeys.",
+      "We reimagined Legowo’s brand presence into a clean, mobile-first marketplace that balances product discovery with the family’s craftsmanship story.",
     links: {
-      website: "https://example.com/mirai",
-      caseStudy: "https://example.com/mirai/case",
+      website: "https://legowo.id",
     },
     dates: {
-      start: "2023-02-01",
-      end: "2023-07-10",
-      published: "2023-07-10",
+      published: "2024-09-01",
     },
   },
   {
@@ -37,7 +34,7 @@ export const projects: Project[] = [
     status: "In Progress",
     thumbnail: "/placeholder.jpg",
     images: ["/placeholder.jpg"],
-    tags: ["Computer Vision", "Edge", "TypeScript"],
+    tags: ["react", "nextjs", "typescript"],
     metrics: {
       accuracy: "98.2%",
       throughput: "120 frames/sec",
@@ -61,7 +58,7 @@ export const projects: Project[] = [
     status: "Completed",
     thumbnail: "/placeholder-logo.png",
     images: ["/placeholder-logo.png", "/placeholder.jpg"],
-    tags: ["Storytelling", "UI Design", "Motion"],
+    tags: ["react", "tailwindcss", "javascript"],
     metrics: {
       sessionDuration: "3.5 min",
       conversion: "18% lift",
@@ -87,7 +84,7 @@ export const projects: Project[] = [
     status: "Completed",
     thumbnail: "/placeholder.svg",
     images: ["/placeholder.svg", "/placeholder.jpg"],
-    tags: ["SaaS", "Analytics", "Design System"],
+    tags: ["nextjs", "typescript", "tailwindcss"],
     metrics: {
       retention: "84%",
       activeUsers: "12k MAU",
@@ -112,7 +109,7 @@ export const projects: Project[] = [
     status: "Completed",
     thumbnail: "/placeholder-user.jpg",
     images: ["/placeholder-user.jpg"],
-    tags: ["Event", "Streaming", "CMS"],
+    tags: ["react", "tailwindcss", "analytics"],
     metrics: {
       attendees: "5,000+ visitors",
       livestream: "3 concurrent stages",
@@ -137,7 +134,7 @@ export const projects: Project[] = [
     status: "In Progress",
     thumbnail: "/placeholder-logo.svg",
     images: ["/placeholder-logo.svg", "/placeholder.jpg"],
-    tags: ["E-commerce", "Composable", "Optimization"],
+    tags: ["nextjs", "typescript", "analytics"],
     metrics: {
       uptime: "99.98%",
       skuCount: "35k+",
@@ -161,7 +158,7 @@ export const projects: Project[] = [
     status: "Upcoming",
     thumbnail: "/images/zrtv-pattern.png",
     images: ["/images/zrtv-pattern.png"],
-    tags: ["Content", "Editorial", "Design"],
+    tags: ["nextjs", "tailwindcss", "mdx"],
     metrics: {
       articles: "24 planned",
     },
@@ -183,7 +180,7 @@ export const projects: Project[] = [
     status: "Completed",
     thumbnail: "/placeholder-logo.svg",
     images: ["/placeholder-logo.svg", "/placeholder.jpg"],
-    tags: ["Logistics", "Automation", "Data"],
+    tags: ["react", "typescript", "analytics"],
     metrics: {
       downtimeReduction: "32%",
       deployments: "14 regions",
