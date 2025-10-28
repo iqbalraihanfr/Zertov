@@ -79,6 +79,16 @@ export function SmoothScrollProvider({ children }: { children: React.ReactNode }
 
       ScrollTrigger.defaults({ scroller: scrollContainer })
 
+      const resolvePinType = () => {
+        if (typeof window === "undefined") return "fixed"
+        const transformValue =
+          scrollContainer.style.transform || window.getComputedStyle(scrollContainer).transform
+        if (!transformValue || transformValue === "none") {
+          return "fixed"
+        }
+        return "transform"
+      }
+
       ScrollTrigger.scrollerProxy(scrollContainer, {
         scrollTop(value?: number) {
           const instance = locomotiveScroll
@@ -97,7 +107,7 @@ export function SmoothScrollProvider({ children }: { children: React.ReactNode }
             height: window.innerHeight,
           }
         },
-        pinType: scrollContainer.style.transform ? "transform" : "fixed",
+        pinType: resolvePinType(),
       })
 
       refreshHandler = () => locomotiveScroll?.update()

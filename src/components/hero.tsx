@@ -102,7 +102,6 @@ export function Hero() {
               scrub: true,
               pin: true,
               pinSpacing: false,
-              pinType: "transform",
             }
 
             const timeline = gsap.timeline({
