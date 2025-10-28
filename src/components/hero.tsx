@@ -10,7 +10,7 @@ import { SCROLLER_ID } from "@/lib/scroll"
 
 const HERO_TITLE = "Build What You Imagine"
 const HERO_BODY =
-  "A Surabaya-based creative tech team crafting websites, systems, and digital experiences that actually work — visually, technically, and strategically."
+  "A Surabaya based creative tech team crafting websites, systems, and digital experiences that actually work visually, technically, and strategically."
 
 export function Hero() {
   const heroRef = useRef<HTMLElement | null>(null)

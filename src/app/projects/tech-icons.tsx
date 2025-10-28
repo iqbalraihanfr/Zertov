@@ -14,6 +14,8 @@ import {
   SiTypescript,
   SiTailwindcss,
   SiGoogleanalytics,
+  SiFigma,
+  SiAdobecreativecloud,
 } from "react-icons/si"
 import type { IconType } from "react-icons"
 
@@ -149,6 +151,14 @@ const techList: TechList = {
   notion: {
     name: "Notion API",
     Icon: SiNotion,
+  },
+  design: {
+    name: "Design Systems",
+    Icon: SiFigma,
+  },
+  branding: {
+    name: "Branding",
+    Icon: SiAdobecreativecloud,
   },
 }
 

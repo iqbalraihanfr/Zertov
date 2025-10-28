@@ -7,6 +7,7 @@ import { TechIcons } from "@/app/projects/tech-icons"
 import { Project } from "@/lib/types/project"
 import { cn } from "@/lib/utils"
 import { brandColors, colors } from "@/lib/utils/colors"
+import { ProjectGallery } from "@/components/projects/project-gallery"
 
 interface ProjectDetailProps {
   project: Project
@@ -157,28 +158,10 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
             </div>
           </div>
 
-          {project.images.length > 1 ? (
+          {project.images.length ? (
             <div className="space-y-4">
               <h2 className="text-sm uppercase tracking-[0.4em] text-[#0006AA]/70">Gallery</h2>
-              <div className="grid gap-4 sm:grid-cols-2">
-                {project.images.slice(1).map((image, index) => (
-                  <div
-                    key={`${project.slug}-image-${index}`}
-                    className={cn(
-                      "relative overflow-hidden rounded-3xl border bg-white/80",
-                      colors.border.primary,
-                    )}
-                  >
-                    <Image
-                      src={image}
-                      alt={`${project.title} image ${index + 2}`}
-                      width={900}
-                      height={600}
-                      className="h-56 w-full object-cover transition duration-500 hover:scale-[1.03]"
-                    />
-                  </div>
-                ))}
-              </div>
+              <ProjectGallery images={project.images} title={project.title} />
             </div>
           ) : null}
         </div>

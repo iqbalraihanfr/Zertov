@@ -25,8 +25,8 @@ const addressLines = [
 const navigationLinks = [
   { label: "Home", href: "/" },
   { label: "Projects", href: "/projects" },
-  { label: "Our Team", href: "/#team" },
-  { label: "Contact", href: "#contact" },
+  { label: "Our Team", href: "/our-team" },
+  // { label: "Contact", href: "#contact" },
 ]
 
 const contactItems = [
@@ -35,8 +35,8 @@ const contactItems = [
 ]
 
 const socialLinks = [
-  { label: "Visit our YouTube", href: "https://www.youtube.com/@zertov", icon: Youtube },
-  { label: "Connect on LinkedIn", href: "https://www.linkedin.com/company/zertov", icon: Linkedin },
+  // { label: "Visit our YouTube", href: "https://www.youtube.com/@zertov", icon: Youtube },
+  // { label: "Connect on LinkedIn", href: "https://www.linkedin.com/company/zertov", icon: Linkedin },
   { label: "Follow on Instagram", href: "https://instagram.com/zertovagency", icon: Instagram },
 ]
 

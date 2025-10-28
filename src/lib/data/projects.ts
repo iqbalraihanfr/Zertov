@@ -25,6 +25,37 @@ export const projects: Project[] = [
       published: "2025-07-22",
     },
   },
+  {
+    slug: "brand-identity-sprint",
+    title: "Brand Identity Sprint",
+    description:
+      "A rapid-fire identity exploration where we crafted six logo systems for emerging Indonesian SMEs, ready for packaging, social, and retail touchpoints.",
+    category: ["Branding", "Visual Identity"],
+    status: "Completed",
+    thumbnail: "/projects/logobrand/renoyugede.png",
+    images: [
+      "/projects/logobrand/renoyugede.png",
+      "/projects/logobrand/renoyu.png",
+      "/projects/logobrand/feelit.png",
+      "/projects/logobrand/coklat.png",
+      "/projects/logobrand/LogoBakso.png",
+      "/projects/logobrand/m.png",
+    ],
+    tags: ["branding", "design"],
+    metrics: {
+      logosDelivered: "6 SME-ready identity suites",
+      turnaround: "14-day discovery-to-delivery sprint",
+      deliverables: "Logo stacks, palette specs, merch-ready exports",
+    },
+    highlightsIntro:
+      "Working from quick interviews and moodboards, we built a shared system: concept sketches, typographic explorations, palette studies, and final assets packaged for both print and digital rollouts.",
+    links: {
+      // caseStudy: "mailto:hello@zertov.com?subject=Brand%20Identity%20Sprint",
+    },
+    dates: {
+      published: "2025-10-15",
+    },
+  },
   // {
   //   slug: "neura-vision-suite",
   //   title: "Neura Vision Suite",
