@@ -4,25 +4,31 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { cn } from "@/lib/utils"
 import { colors } from "@/lib/utils/colors"
-import { ArrowUpRight, Check, Sparkles, Workflow } from "lucide-react"
+import { ArrowUpRight, Check, CircleFadingPlus, Workflow, Code, Brush } from "lucide-react"
 
 const serviceHighlights = [
   {
-    title: "Launch Campaign Pods",
-    description: "Sprint teams that take you from positioning to launch assets without breaking momentum.",
-    deliverables: ["Narrative & key visual system", "Landing experiences & growth assets", "Motion bumpers & cutdowns"],
-    icon: Sparkles,
+    title: "Web Development",
+    description: "Bring your digital presence to life through smart, scalable, and seamless web experiences. We design, develop, and optimize websites that don’t just look good they perform.",
+    deliverables: ["UI/UX design & prototyping", "Responsive & interactive development", "SEO, analytics & performance integration"],
+    icon: Code,
   },
   {
-    title: "Product Experience Builds",
-    description: "Design, prototype, and ship interactive product demos that actually sell the value of your platform.",
-    deliverables: ["Interactive storyboards", "WebGL / 3D microsites", "Performance-focused handoff"],
-    icon: Workflow,
+    title: "Content & Social Media",
+    description: "Create connection that converts. From content strategy to daily execution, we craft stories and visuals that make your brand stay relevant, memorable, and engaging.",
+    deliverables: ["Content direction & storytelling", "Social media management & growth assets", "Reels, motion, and campaign production"],
+    icon: CircleFadingPlus,
+  },
+  {
+    title: "Branding Strategy",
+    description: "From zero to an identity that speaks. We help brands discover their voice from visual DNA to guidelines that drive consistent impact.",
+    deliverables: ["Logo & visual identity design", "Brand strategy & positioning", "Brand guideline system"],
+    icon: Brush,
   },
 ]
 
 const differentiators = [
-  { label: "Average turnaround", value: "12 days" },
+  // { label: "Average turnaround", value: "12 days" },
   { label: "Stakeholder approvals", value: "2 revisions max" },
   { label: "Campaign uptime", value: "99.9%" },
 ]

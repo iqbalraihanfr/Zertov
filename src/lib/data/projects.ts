@@ -32,8 +32,9 @@ export const projects: Project[] = [
       "A rapid-fire identity exploration where we crafted six logo systems for emerging Indonesian SMEs, ready for packaging, social, and retail touchpoints.",
     category: ["Branding", "Visual Identity"],
     status: "Completed",
-    thumbnail: "/projects/logobrand/renoyugede.png",
+    thumbnail: "/projects/logobrand/stylescaperenoyu.jpeg",
     images: [
+      "/projects/logobrand/stylescaperenoyu.jpeg",
       "/projects/logobrand/renoyugede.png",
       "/projects/logobrand/renoyu.png",
       "/projects/logobrand/feelit.png",

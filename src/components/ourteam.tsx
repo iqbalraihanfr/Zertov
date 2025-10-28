@@ -47,7 +47,7 @@ const teamMembers: TeamMember[] = [
   },
   {
     name: "Rafif",
-    role: "Production Lead",
+    role: "Manager Strategist",
     photo: "/team/55.png",
     scale: 1.1,
     desktop: { top: "50%", left: "52%", z: 45 },
