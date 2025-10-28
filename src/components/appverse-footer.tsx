@@ -16,10 +16,7 @@ const defaultContent: FooterContent = {
 }
 
 const addressLines = [
-  "ini diisi",
-  "alamatnya",
-  "siapa",
-  "bjir",
+  "Surabaya, Indonesia.",
 ]
 
 const navigationLinks = [
